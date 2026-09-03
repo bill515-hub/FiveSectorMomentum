@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "five-sector-momentum"
+version = "0.1.0"
+description = "Auditable Chinese futures five-sector momentum backtester"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "PyYAML>=6.0",
+  "tushare>=1.4",
+  "matplotlib>=3.8",
+  "Jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+parquet = ["pyarrow>=15"]
+dev = ["pytest>=8", "hypothesis>=6"]
+
+[project.scripts]
+fsm = "five_sector_momentum.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+

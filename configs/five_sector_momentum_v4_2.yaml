@@ -1,0 +1,75 @@
+version: v4_2
+run: {start: "2015-01-01", end: "2026-08-31", warmup_start: "2014-01-01", sample_split: "2022-01-01", initial_capital: 10000000, base_currency: CNY}
+data:
+  {source: tushare, root: data, normalized_subdir: normalized_v2, token_env: TUSHARE_TOKEN,
+   exchanges: [CFFEX, DCE, CZCE, SHFE, INE, GFEX], use_vendor_main_mapping: true, vendor_mapping_lag_days: 0}
+signal: {price: close, method: price_diff_sharpe, annualization_days: 252, update_frequency: weekly, min_eligible_instruments: 2, long_threshold: 0.0, short_threshold: 0.0}
+v4_research:
+  v3_reference_lookback_days: 252
+  single_horizons: [20, 60, 120, 180, 250]
+  skip_recent_days: 5
+  twelve_minus_one_total_days: 250
+  twelve_minus_one_skip_days: 20
+  twelve_minus_one_effective_days: 230
+  forecast_scaling: {target_average_absolute_forecast: 10.0, minimum_history_days: 126, scalar_floor: 0.1, scalar_cap: 100.0, forecast_cap: 20.0, lag_days: 1}
+  combinations: {fast: [20, 60, 120], all: [20, 60, 120, 250], slow: [60, 120, 180, 250]}
+v4_2_research:
+  maximum_new_engine_runs: 4
+  reproduction_money_tolerance: 0.01
+  source_v4_output: outputs/v4_20260902_102628
+  source_v4_1_output: outputs/v4_1_20260902_163841
+  output_directory: outputs/v4_2_20260903_072724
+  registry: docs/V4_2_EXPERIMENT_REGISTRY.md
+  execution_order: [G1, G2, S1, S2]
+  sleeve_components:
+    - {label: single_20_skip5, window_days: 20, skip_recent_days: 5, risk_fraction: 0.5}
+    - {label: single_250, window_days: 250, skip_recent_days: 0, risk_fraction: 0.5}
+  official_cost: C3
+  stress_cost: C7
+  bootstrap: {seed: 20260902, block_length: 20, repetitions: 2000}
+  rolling_correlation_windows: [63, 126, 252]
+  minimum_conditional_observations: 20
+  preflight_cutoff: "2016-01-06"
+  preflight_extended_end: "2016-01-08"
+  stop_on_append_invariance_failure: true
+volatility: {method: robust_ewma_price_diff, ewma_span_days: 35, min_periods: 10, floor_enabled: true, floor_quantile: 0.05, floor_lookback_days: 500, floor_min_periods: 100, absolute_min: 1.0e-10, annualization_days: 252}
+eligibility: {liquidity_lookback_days: 20, liquidity_min_periods: 10, min_median_volume: 10000, min_median_open_interest: 20000}
+portfolio:
+  annual_vol_targets: [0.275]
+  default_annual_vol_target: 0.275
+  sector_risk_weights: {ferrous: 0.20, agriculture: 0.20, chemical_energy: 0.20, government_bond: 0.20, base_metal: 0.20}
+  position_buffer_fraction: 0.10
+  broker_margin_multiplier: 1.25
+  max_commodity_margin_utilization: 0.65
+  max_total_margin_utilization: 0.78
+  max_commodity_gross_notional_leverage: 8.0
+  leverage_exempt_sectors: [government_bond]
+  max_position_fraction_of_median_volume: 0.05
+  max_position_fraction_of_median_open_interest: 0.01
+  covariance_scaling: {enabled: true, lookback_days: 252, min_periods: 126, minimum_multiplier: 0.50, maximum_multiplier: 3.00}
+  realized_volatility_feedback: {enabled: true, ewma_span_days: 63, min_periods: 63, minimum_multiplier: 0.75, maximum_multiplier: 1.35}
+execution:
+  timing: next_open
+  unfilled_modes: [cancel_recalculate]
+  max_volume_participation: 0.05
+  fallback_executable_volume: 10000
+  reject_locked_limit: true
+  high_liquidity_instruments: [T, RB, AL]
+  high_liquidity_min_median_volume: 10000
+  high_liquidity_min_median_open_interest: 20000
+  normal_ticks_high_liquidity: 1.0
+  normal_ticks_other: 2.0
+  stress_ticks_high_liquidity: 2.0
+  stress_ticks_other: 3.0
+  roll_extra_ticks: 1.0
+  impact_steps:
+    - {max_participation: 0.01, extra_ticks: 0.0}
+    - {max_participation: 0.03, extra_ticks: 1.0}
+    - {max_participation: 1.00, extra_ticks: 2.0}
+fees: {raw_tushare_path: data/v3/fees/tushare_fut_settle_daily_raw, rules_path: data/v3/fees/historical_fee_rules, formal_client_multiplier: 1.5, close_today_missing_policy: explicit_proxy}
+roll: {stitch_method: panama, forward_fill: false, fallback_rule: open_interest, fallback_confirmation_days: 2, fallback_switch_ratio: 1.10, minimum_days_to_expiry: 20, forbid_backward_roll: true}
+universe:
+  absolute: {ferrous: [RB], government_bond: [T], base_metal: [AL]}
+  cross_sectional:
+    agriculture: {DCE: [C, M, P, JD, LH], CZCE: [CF, SR, AP]}
+    chemical_energy: {DCE: [], CZCE: [FG, MA, UR], SHFE: [RU, SP], INE: [SC]}
