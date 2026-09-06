@@ -1,0 +1,602 @@
+registry_version: '1.4'
+registry_date: '2026-09-06'
+status: LOCKED_BEFORE_RESULTS
+v6_results_seen_before_lock: false
+authority:
+  machine_source_of_truth: V6_MACHINE_REGISTRY.yaml
+  narrative_registry: 06_EXPERIMENT_REGISTRY.md
+  resolved_runtime_config: configs/five_sector_momentum_v6.yaml
+  rule: 运行配置必须由本表校验并逐字段落盘；任何经济字段不一致时不得启动。
+run_budget:
+  registered_effective_runs: 44
+  global_attempt_cap: 48
+  retry_reserve: 4
+  attempt_count_definition: every_started_full_history_engine_process
+  effective_count_max_per_scenario: 1
+  launch_guard: 48 - attempt_count >= 44 - effective_count
+  infrastructure_failure_refunds_attempt: false
+top_level_run_status:
+- RUNNING
+- FAILED_GATE
+- INTERRUPTED
+- PROVISIONAL
+- COMPLETE_NONCANONICAL
+- COMPLETE_CANONICAL
+phase0_1a_status:
+- NOT_STARTED
+- RUNNING
+- READY_FOR_A01
+- BLOCKED_BEFORE_A01
+scenario_status:
+- REGISTERED
+- RUNNING
+- EFFECTIVE
+- FAILED
+- ACCOUNTING_FAILED
+- INTERRUPTED
+- REUSED
+family_status:
+- NOT_STARTED
+- RUNNING
+- COMPLETE
+- INCOMPLETE_FAMILY
+gate_order:
+- G0
+- G0_DATA_FEASIBILITY
+- G1_DATA_AND_RULES
+- G2_COMPATIBILITY
+- G3_FEES
+- G4_LIMITS
+- G5_MARGIN
+- G6_ACCOUNTING
+- G7_CAUSAL_PREFIX
+- G8_DETERMINISM_RELEASE
+common_parameters:
+  warmup_start: '2014-01-01'
+  backtest_start: '2015-01-01'
+  backtest_end: '2026-08-31'
+  insample_start: '2015-01-01'
+  insample_end: '2021-12-31'
+  validation_start: '2022-01-01'
+  validation_end: '2026-08-31'
+  validation_label: historically_reused_validation_not_clean_oos
+  initial_capital_cny: 10000000
+  annualization_days_primary: 252
+  portfolio_target_volatility: 0.275
+  sector_risk_budget_each: 0.2
+  unused_budget_transfer: false
+  normal_buffer: 0.1
+  emergency_realized_vol_ratio: 1.2
+  point_volatility:
+    method: robust_ewma
+    span: 35
+    min_periods: 10
+    floor_lookback: 500
+    floor_quantile: 0.05
+    floor_min_periods: 100
+  realized_volatility_feedback:
+    span: 63
+    min_periods: 63
+    multiplier_min: 0.75
+    multiplier_max: 1.35
+  covariance_uniform_scaling:
+    enabled: true
+    lookback: 252
+    min_periods: 126
+    multiplier_min: 0.5
+    multiplier_max: 3.0
+    changes_relative_sector_weights: false
+  liquidity:
+    rolling_median_days: 20
+    min_periods: 10
+    eligible_min_volume: 10000
+    eligible_min_open_interest: 20000
+    preliminary_target_volume_fraction: 0.05
+    preliminary_target_oi_fraction: 0.01
+    final_recheck_enabled_formal: true
+    final_target_volume_fraction: 0.05
+    final_target_oi_fraction: 0.01
+  target_stage_order:
+  - internal_sleeve_target
+  - net_by_real_contract
+  - preliminary_liquidity_oi_cap
+  - covariance_and_realized_vol_scaling
+  - normal_buffer_once
+  - final_liquidity_oi_margin_leverage_constraints
+  - real_order
+  participation:
+    max_volume_fraction: 0.05
+    missing_volume_proxy: 10000
+    impact_ticks:
+    - max_fraction: 0.01
+      ticks: 0
+    - max_fraction: 0.03
+      ticks: 1
+    - max_fraction: 1.0
+      ticks: 2
+  slippage:
+    high_liquidity_instruments:
+    - T
+    - RB
+    - AL
+    high_liquidity_base_ticks: 1
+    other_base_ticks: 2
+    roll_extra_ticks: 1
+    integer_ticks_only: true
+  fees:
+    customer_multiplier: 1.5
+    trade_types:
+    - OPEN
+    - CLOSE_YESTERDAY
+    - CLOSE_TODAY
+  margin:
+    customer_proxy_multiplier: 1.25
+    commodity_utilization_cap: 0.65
+    total_utilization_cap: 0.78
+    commodity_nominal_leverage_cap: 8.0
+    T_exempt_from_commodity_cap: true
+    utilization_caps_are_target_constraints: true
+    broker_forced_liquidation_model_enabled: false
+    eod_utilization_breach_action: RECORD_DIAGNOSTIC_THEN_RECOMPUTE_NEXT_TARGET
+    target_reduction_reason: MARGIN_TARGET_REDUCTION
+    equity_nonpositive_trigger: equity <= 0
+    equity_nonpositive_action: STOP_SCENARIO_FAILED_GATE_AND_PRESERVE_PARTIAL_LEDGER
+    insolvency_state: ACCOUNT_INSOLVENT
+    external_cash_injection: false
+    synthetic_limited_liability_return_curve_forbidden: true
+    correction_ladder_requires_zero_insolvency_events: true
+  main_contract:
+    oi_fallback_confirmation_days: 2
+    switch_ratio: 1.1
+    minimum_days_to_expiry: 20
+    backward_roll_forbidden: true
+  signal_and_execution:
+    signal_price: panama_adjusted_close_points
+    percentage_returns_for_signal_forbidden: true
+    rebalance_mode: hybrid_weekly
+    decision_time: completed_week_close
+    first_execution: next_exchange_trading_day_vendor_first_session_open
+    limit_policy_formal: L0_REJECT_RECALCULATE
+    rejected_limit_terminal_status: REJECTED_LIMIT
+    partial_fill_remainder_terminal_status: EXPIRED_UNFILLED
+    stale_open_order_terminal_status: CANCELLED_RECALCULATE
+    next_day_recalculation_creates_new_order: true
+correction_activation_by_sequence:
+  corrected_fee_rules_from: 7
+  causal_limit_execution_from: 9
+  daily_directional_margin_from: 11
+  post_scaling_liquidity_oi_recheck_from: 13
+  preliminary_liquidity_oi_cap_removed_at_any_stage: false
+data_feasibility:
+  limit_endpoint_probe:
+    exchanges:
+    - SHFE
+    - INE
+    - DCE
+    - CZCE
+    - CFFEX
+    historical_contracts_each: 1
+    active_contracts_each: 1
+    total_contracts: 10
+  next_open_validation:
+    instruments:
+    - RB
+    - SC
+    - M
+    - TA
+    - T
+    dates_each: 15
+    total_observations: 75
+    required_match_rate_each: 1.0
+  formal_limit_coverage: 1.0
+  margin_official_or_derived_coverage:
+    portfolio_min: 0.95
+    commodities_min: 0.95
+    T_min: 0.95
+    exposed_instrument_full_year_min: 0.8
+    exposed_special_margin_date_min: 1.0
+  failure_action: stop_before_A01_and_write_blocker
+execution_environment:
+  default_python_hash_seed: 0
+runner_up_policy:
+  decision_information_cutoff: t_close
+  universe: same_sector_t_eligible_excluding_primary
+  long_sort:
+  - forecast_desc
+  - instrument_id_asc
+  - ts_code_asc
+  short_sort:
+  - forecast_asc
+  - instrument_id_asc
+  - ts_code_asc
+  sign_requirement: same_required_sign_as_primary_side
+  maximum_depth: 1
+  cascading_forbidden: true
+  resize_rule: 使用 runner-up 自身截至 t 的 robust point volatility、合约乘数和原被拒腿固定风险预算， 调用与主选完全相同的整数手
+    sizing 函数；只替代未成交风险，不转移额外预算。
+  next_day_reranking_forbidden: true
+  old_roll_leg_substitution_forbidden: true
+rolling_selection_rule:
+  training_years: 5
+  first_evaluation_year: 2020
+  metric: net_daily_return_sharpe
+  nonfinite_sharpe_eligible: false
+  tie_set: best_sharpe - sharpe_i <= 0.01
+  tie_break:
+  - lower_annualized_nominal_turnover
+  - strategy_id_lexicographic
+  all_nonfinite_fallback: reference_v3_252
+bootstrap_and_multiple_testing:
+  rng: PCG64
+  primary_seed: 20260905
+  repetitions: 5000
+  primary_block_length: 20
+  robustness_block_length: 60
+  paired_shared_date_blocks: true
+  westfall_young_estimand: paired_mean_daily_net_return
+  westfall_young_side: one_sided_superiority
+  westfall_young_fwer: 0.1
+  hac_lag: 20
+  hac_autocovariance_denominator: n
+  finite_sample_pvalue: (1 + exceed_count) / 5001
+  sharpe_difference_multiplicity_adjusted: false
+pure_analysis:
+  slippage_frozen_path_base_tick_deltas:
+  - -1
+  - 1
+  slippage_base_tick_floor: 0
+  minute_path_windows_minutes:
+  - 1
+  - 5
+  - 15
+  actual_day_annualization_is_diagnostic_only: true
+  main_annualization_remains_252: true
+  multiple_testing_detectability_required: true
+hash_contract:
+  economic_config_hash_excludes:
+  - run_id
+  - scenario_id
+  - output_path
+  - started_at
+  - attempt_id
+  - replicate_of
+  - python_hash_seed
+  business_event_key_excludes:
+  - run_id
+  - scenario_id
+  - attempt_id
+  - output_path
+  - lots
+  - price
+  - event_status
+  - commission
+  - slippage
+  - margin
+  - pnl
+  - equity
+  table_content_hash_serialization: canonical_json_rows_v1
+  pandas_pickle_bytes_as_identity_forbidden: true
+base_strategy_family:
+- strategy_id: reference_v3_252
+  provider_scenario: B07
+- strategy_id: single_20
+  provider_scenario: E01
+- strategy_id: single_60
+  provider_scenario: E02
+- strategy_id: single_120
+  provider_scenario: E03
+- strategy_id: single_180
+  provider_scenario: E04
+- strategy_id: single_250
+  provider_scenario: C02
+- strategy_id: single_20_skip5
+  provider_scenario: C01
+- strategy_id: single_60_skip5
+  provider_scenario: E05
+- strategy_id: single_120_skip5
+  provider_scenario: E06
+- strategy_id: single_180_skip5
+  provider_scenario: E07
+- strategy_id: single_250_skip5
+  provider_scenario: E08
+- strategy_id: single_250_minus_20
+  provider_scenario: E09
+- strategy_id: multi_fast_raw
+  provider_scenario: E10
+- strategy_id: multi_fast_scaled
+  provider_scenario: E11
+- strategy_id: multi_all_raw
+  provider_scenario: E12
+- strategy_id: multi_all_scaled
+  provider_scenario: E13
+- strategy_id: multi_slow_raw
+  provider_scenario: E14
+- strategy_id: multi_slow_scaled
+  provider_scenario: E15
+- strategy_id: strategy_sleeve_fast_equal_risk
+  provider_scenario: E16
+- strategy_id: strategy_sleeve_all_equal_risk
+  provider_scenario: E17
+- strategy_id: strategy_sleeve_slow_equal_risk
+  provider_scenario: E18
+- strategy_id: sleeve_20skip5_250_equal_risk
+  provider_scenario: B08
+scenario_order:
+- sequence: 1
+  id: A01
+  name: compat_reference_v3_252_C3
+  role: compatibility
+- sequence: 2
+  id: A02
+  name: compat_single_20_skip5_C3
+  role: compatibility
+- sequence: 3
+  id: A03
+  name: compat_single_250_C3
+  role: compatibility
+- sequence: 4
+  id: A04
+  name: compat_sleeve_20skip5_250_C3
+  role: compatibility
+- sequence: 5
+  id: A05
+  name: compat_sleeve_20skip5_250_fixed3
+  role: compatibility
+- sequence: 6
+  id: A06
+  name: bridge_reference_v3_252_calendar_only
+  role: calendar_bridge
+- sequence: 7
+  id: B01
+  name: fee_corrected_reference_v3
+  role: fee_bridge
+- sequence: 8
+  id: B02
+  name: fee_corrected_sleeve
+  role: fee_bridge
+- sequence: 9
+  id: B03
+  name: causal_limit_reference_v3
+  role: limit_bridge
+- sequence: 10
+  id: B04
+  name: causal_limit_sleeve
+  role: limit_bridge
+- sequence: 11
+  id: B05
+  name: daily_margin_reference_v3
+  role: margin_bridge
+- sequence: 12
+  id: B06
+  name: daily_margin_sleeve
+  role: margin_bridge
+- sequence: 13
+  id: B07
+  name: final_liquidity_cap_reference_v3
+  role: formal_reference
+- sequence: 14
+  id: B08
+  name: final_liquidity_cap_sleeve
+  role: formal_sleeve
+- sequence: 15
+  id: C01
+  name: corrected_single_20_skip5
+  role: corrected_candidate
+- sequence: 16
+  id: C02
+  name: corrected_single_250
+  role: corrected_candidate
+- sequence: 17
+  id: C03
+  name: corrected_sleeve_20skip5_250_fixed3
+  role: slippage_stress
+- sequence: 18
+  id: D01
+  name: sleeve_limit_policy_L1
+  role: execution_policy
+- sequence: 19
+  id: D02
+  name: sleeve_limit_policy_L2
+  role: execution_policy
+- sequence: 20
+  id: E01
+  name: corrected_single_20
+  role: base_strategy
+- sequence: 21
+  id: E02
+  name: corrected_single_60
+  role: base_strategy
+- sequence: 22
+  id: E03
+  name: corrected_single_120
+  role: base_strategy
+- sequence: 23
+  id: E04
+  name: corrected_single_180
+  role: base_strategy
+- sequence: 24
+  id: E05
+  name: corrected_single_60_skip5
+  role: base_strategy
+- sequence: 25
+  id: E06
+  name: corrected_single_120_skip5
+  role: base_strategy
+- sequence: 26
+  id: E07
+  name: corrected_single_180_skip5
+  role: base_strategy
+- sequence: 27
+  id: E08
+  name: corrected_single_250_skip5
+  role: base_strategy
+- sequence: 28
+  id: E09
+  name: corrected_single_250_minus_20
+  role: base_strategy
+- sequence: 29
+  id: E10
+  name: corrected_multi_fast_raw
+  role: base_strategy
+- sequence: 30
+  id: E11
+  name: corrected_multi_fast_scaled
+  role: base_strategy
+- sequence: 31
+  id: E12
+  name: corrected_multi_all_raw
+  role: base_strategy
+- sequence: 32
+  id: E13
+  name: corrected_multi_all_scaled
+  role: base_strategy
+- sequence: 33
+  id: E14
+  name: corrected_multi_slow_raw
+  role: base_strategy
+- sequence: 34
+  id: E15
+  name: corrected_multi_slow_scaled
+  role: base_strategy
+- sequence: 35
+  id: E16
+  name: corrected_strategy_sleeve_fast_equal_risk
+  role: base_strategy
+- sequence: 36
+  id: E17
+  name: corrected_strategy_sleeve_all_equal_risk
+  role: base_strategy
+- sequence: 37
+  id: E18
+  name: corrected_strategy_sleeve_slow_equal_risk
+  role: base_strategy
+- sequence: 38
+  id: F01
+  name: true_rolling_selection
+  role: rolling_meta_strategy
+- sequence: 39
+  id: G01
+  name: covariance_ablation_reference_v3
+  role: risk_ablation
+- sequence: 40
+  id: G02
+  name: covariance_ablation_sleeve
+  role: risk_ablation
+- sequence: 41
+  id: H01
+  name: proxy_fee_x2_reference_v3
+  role: proxy_stress
+- sequence: 42
+  id: H02
+  name: proxy_fee_x2_sleeve
+  role: proxy_stress
+- sequence: 43
+  id: I01
+  name: deterministic_rerun_reference_v3
+  role: determinism
+  replicate_of: B07
+  python_hash_seed: 20260905
+- sequence: 44
+  id: I02
+  name: deterministic_rerun_sleeve
+  role: determinism
+  replicate_of: B08
+  python_hash_seed: 20260906
+scenario_overrides:
+  A01:
+    calendar_mode: legacy_v3
+    compatibility_source: v3_formal_reference
+  A02:
+    calendar_mode: v4_2_repaired
+    compatibility_source: v4_2_G1
+  A03:
+    calendar_mode: v4_2_repaired
+    compatibility_source: v4_2_G2
+  A04:
+    calendar_mode: v4_2_repaired
+    compatibility_source: v4_2_S1
+  A05:
+    calendar_mode: v4_2_repaired
+    compatibility_source: v4_2_S2
+    base_slippage_mode: fixed_ticks_all_instruments
+    base_slippage_ticks: 3
+  A06:
+    calendar_mode: v4_2_repaired
+    base_scenario: A01
+    allowed_change: calendar_only
+  C03:
+    base_slippage_mode: fixed_ticks_all_instruments
+    base_slippage_ticks: 3
+  D01:
+    limit_policy: L1_DEFER_SELL
+    absolute_and_sell_retry_trading_days: 1
+    cross_section_runner_up_depth: 1
+  D02:
+    limit_policy: L2_REJECT_SELL
+    absolute_retry_trading_days: 1
+    sell_retry_trading_days: 0
+    cross_section_runner_up_depth: 1
+  G01:
+    covariance_uniform_scaling_enabled: false
+    base_scenario: B07
+  G02:
+    covariance_uniform_scaling_enabled: false
+    base_scenario: B08
+  H01:
+    proxy_exchange_fee_rule_multiplier: 2.0
+    base_scenario: B07
+  H02:
+    proxy_exchange_fee_rule_multiplier: 2.0
+    base_scenario: B08
+  I01:
+    base_scenario: B07
+    economic_configuration_identical: true
+  I02:
+    base_scenario: B08
+    economic_configuration_identical: true
+single_factor_comparisons:
+- left: A01
+  right: A06
+  allowed_change: calendar_only
+- left: A06
+  right: B01
+  allowed_change: fee_rules_only
+- left: A04
+  right: B02
+  allowed_change: fee_rules_only
+- left: B01
+  right: B03
+  allowed_change: causal_limit_execution_only
+- left: B02
+  right: B04
+  allowed_change: causal_limit_execution_only
+- left: B03
+  right: B05
+  allowed_change: daily_directional_margin_only
+- left: B04
+  right: B06
+  allowed_change: daily_directional_margin_only
+- left: B05
+  right: B07
+  allowed_change: post_scaling_liquidity_oi_recheck_only
+- left: B06
+  right: B08
+  allowed_change: post_scaling_liquidity_oi_recheck_only
+- left: B08
+  right: C03
+  allowed_change: base_slippage_fixed_3_ticks_only
+- left: B08
+  right: D01
+  allowed_change: limit_execution_policy_only
+- left: B08
+  right: D02
+  allowed_change: limit_execution_policy_only
+v6_runtime:
+  scope: PHASE0_AND_PHASE1A_ONLY
+  full_history_launcher_enabled: false
+  full_history_attempts_consumed: 0
+  machine_registry_path: D:\FiveSectorMomentum\docs\v6_20260905_research_and_test_plan\V6_MACHINE_REGISTRY.yaml
+  machine_registry_file_sha256: 5149568f64959c8eada2fe4e9cf370df5a348ccf042fab119dd0b6286fb36cac
+  resolved_config_policy: generated_or_exactly_validated_from_machine_registry
+  secret_source: PROJECT_EXISTING_SECURE_ENVIRONMENT
+  secret_values_in_config_forbidden: true

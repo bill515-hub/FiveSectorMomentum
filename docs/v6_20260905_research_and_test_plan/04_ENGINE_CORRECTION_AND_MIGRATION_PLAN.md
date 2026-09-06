@@ -240,8 +240,8 @@ OrderRejected / OrderPartiallyFilled / OrderFilled / OrderExpired
 SettlementEvent
 FeeCharged
 MarginSnapshot
-MarginCallEvent
-ForcedLiquidationOrder
+MarginTargetReductionEvent
+MarginUtilizationBreachDiagnostic
 AccountInsolventEvent
 ```
 

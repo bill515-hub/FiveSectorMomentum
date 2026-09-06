@@ -1,0 +1,13 @@
+{
+  "errata_version": "1.2",
+  "scope": "G2_TEST_INTERPRETATION_ONLY",
+  "economic_registry_changed": false,
+  "expected_legacy_signature": {
+    "suite": "tests/test_v4_2_preflight.py",
+    "failed_test": "test_02_weekly_directions_must_not_change_when_future_dates_are_appended",
+    "historical_mismatch_rows": 35,
+    "direction_change_rows": 3
+  },
+  "formal_repaired_gate": "tests/test_v4_2_repaired.py",
+  "locked_before_any_v6_1_performance": true
+}

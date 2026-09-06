@@ -1,0 +1,25 @@
+version: v6_1
+research_status: PROVISIONAL_DAILY_ONLY
+machine_registry: docs/v6_1_daily_only_provisional_plan/V6_1_MACHINE_REGISTRY.yaml
+canonical_v6_registry: docs/v6_20260905_research_and_test_plan/V6_MACHINE_REGISTRY.yaml
+preflight_evidence: outputs/v6_1_20260906_152159_preflight
+legacy_v3_config: configs/five_sector_momentum_v3.yaml
+legacy_v4_2_config: configs/five_sector_momentum_v4_2_repaired.yaml
+data:
+  normalized_directory: data/normalized_v2
+  vendor_margin_cache: data/v3/fees/tushare_fut_settle_daily_raw.pkl
+  static_margin_source: data/normalized_v2/instrument_meta.pkl
+  v6_1_root: data/v6_1
+outputs:
+  root: outputs
+  attempt_ledger: outputs/V6_1_GLOBAL_ATTEMPT_LEDGER.csv
+execution:
+  full_history_attempt_cap: 16
+  scenario_count: 14
+  next_day_execution: true
+  integer_ticks_only: true
+  customer_fee_multiplier: 1.5
+  corrected_fee_rate_divisor: 1000
+  legacy_fee_rate_divisor: 10000
+  margin_customer_multiplier: 1.25
+  watermark: PROVISIONAL_DAILY_ONLY

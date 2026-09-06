@@ -1,0 +1,118 @@
+registry_version: "1.1"
+registry_status: LOCKED_BEFORE_PERFORMANCE
+research_status: PROVISIONAL_DAILY_ONLY
+canonical_v6_registry: docs/v6_20260905_research_and_test_plan/V6_MACHINE_REGISTRY.yaml
+preflight_evidence: outputs/v6_1_20260906_152159_preflight
+run_budget:
+  valid_full_history_scenarios: 14
+  reserve_attempts: 2
+  global_attempt_cap: 16
+  probes_tests_bridges_and_shadow_diagnostics_count_as_attempt: false
+strategies:
+  - reference_v3_252
+  - sleeve_20skip5_250_equal_risk
+common_parameters:
+  warmup_start: 2014-01-01
+  backtest_start: 2015-01-01
+  backtest_end: 2026-08-31
+  insample_start: 2015-01-01
+  insample_end: 2021-12-31
+  validation_start: 2022-01-01
+  validation_end: 2026-08-31
+  validation_label: historically_reused_validation_not_clean_oos
+  initial_capital_cny: 10000000
+  annualization_days_primary: 252
+  portfolio_target_volatility: 0.275
+  sector_risk_budget_each: 0.2
+  unused_budget_transfer: false
+  normal_buffer: 0.10
+  emergency_realized_vol_ratio: 1.20
+  point_volatility: {method: robust_ewma, span: 35, min_periods: 10, floor_lookback: 500, floor_quantile: 0.05, floor_min_periods: 100}
+  realized_volatility_feedback: {span: 63, min_periods: 63, multiplier_min: 0.75, multiplier_max: 1.35}
+  covariance_uniform_scaling: {enabled: true, lookback: 252, min_periods: 126, multiplier_min: 0.5, multiplier_max: 3.0, changes_relative_sector_weights: false}
+  liquidity: {rolling_median_days: 20, min_periods: 10, eligible_min_volume: 10000, eligible_min_open_interest: 20000, preliminary_target_volume_fraction: 0.05, preliminary_target_oi_fraction: 0.01, final_recheck_enabled_formal: true, final_target_volume_fraction: 0.05, final_target_oi_fraction: 0.01}
+  target_stage_order: [internal_sleeve_target, net_by_real_contract, preliminary_liquidity_oi_cap, covariance_and_realized_vol_scaling, normal_buffer_once, final_liquidity_oi_margin_leverage_constraints, real_order]
+  participation:
+    max_volume_fraction: 0.05
+    missing_volume_proxy: 10000
+    impact_ticks: [{max_fraction: 0.01, ticks: 0}, {max_fraction: 0.03, ticks: 1}, {max_fraction: 1.0, ticks: 2}]
+  slippage: {high_liquidity_instruments: [T, RB, AL], high_liquidity_base_ticks: 1, other_base_ticks: 2, roll_extra_ticks: 1, integer_ticks_only: true}
+  fees: {customer_multiplier: 1.5, trade_types: [OPEN, CLOSE_YESTERDAY, CLOSE_TODAY]}
+  margin:
+    customer_proxy_multiplier: 1.25
+    commodity_utilization_cap: 0.65
+    total_utilization_cap: 0.78
+    commodity_nominal_leverage_cap: 8.0
+    T_exempt_from_commodity_cap: true
+    utilization_caps_are_target_constraints: true
+    broker_forced_liquidation_model_enabled: false
+    eod_utilization_breach_action: RECORD_DIAGNOSTIC_THEN_RECOMPUTE_NEXT_TARGET
+    target_reduction_reason: MARGIN_TARGET_REDUCTION
+    equity_nonpositive_trigger: equity <= 0
+    equity_nonpositive_action: STOP_SCENARIO_FAILED_GATE_AND_PRESERVE_PARTIAL_LEDGER
+    insolvency_state: ACCOUNT_INSOLVENT
+    external_cash_injection: false
+    synthetic_limited_liability_return_curve_forbidden: true
+    correction_ladder_requires_zero_insolvency_events: true
+  main_contract: {oi_fallback_confirmation_days: 2, switch_ratio: 1.1, minimum_days_to_expiry: 20, backward_roll_forbidden: true}
+  signal_and_execution:
+    signal_price: panama_adjusted_close_points
+    percentage_returns_for_signal_forbidden: true
+    rebalance_mode: hybrid_weekly
+    decision_time: completed_week_close
+    first_execution: next_exchange_trading_day_vendor_first_session_open
+    limit_policy_formal: L0_REJECT_RECALCULATE
+    rejected_limit_terminal_status: REJECTED_LIMIT
+    partial_fill_remainder_terminal_status: EXPIRED_UNFILLED
+    stale_open_order_terminal_status: CANCELLED_RECALCULATE
+    next_day_recalculation_creates_new_order: true
+margin_evidence:
+  evidence_table: outputs/v6_1_20260906_152159_preflight/margin_vendor_coverage_by_instrument_year.csv
+  evidence_content_sha256: 917a2389f0c6c8d29f8f7abcf4956292929f994bd66296964aed3c48ddcdcde9
+  shfe_ine_2015_2020_vendor_coverage: 0.0
+  shfe_ine_2015_2020_fallback_share: 1.0
+  all_instrument_position_day_diagnostic:
+    v3_formal: {vendor_coverage: 0.4392473689805464, fallback_share: 0.5607526310194536}
+    v4_2_sleeve: {vendor_coverage: 0.571333396783097, fallback_share: 0.428666603216903}
+  vendor_label: VENDOR_DAILY_UNVERIFIED
+  fallback_label: STATIC_FALLBACK_PROXY
+  fallback_customer_multiplier: 1.25
+fee_semantics:
+  legacy: {rate_divisor: 10000, purpose: compatibility_only, customer_multiplier: 1.5}
+  corrected: {rate_divisor: 1000, t_fixed_fee_special_case: true, customer_multiplier: 1.5, transaction_types: [open, close_non_today, close_today]}
+one_price_proxy:
+  definition: daily_high_equals_daily_low
+  scope: actual_real_contract_orders_and_roll_legs_only
+  high_low_is_true_limit_evidence: false
+  challenge_set_is_truth: false
+  p0: execute_if_daily_bar_exists
+  p1: reject_buy_when_one_price_above_pre_settle_and_reject_sell_when_one_price_below_pre_settle
+  p2: reject_all_one_price_orders
+  adverse_slippage_outside_daily_range_vendor_open: reject_not_clip
+execution_proxies:
+  vendor_open: vendor_daily_open_not_session_verified
+  next_close: daily_close_with_independent_cash_slippage_once_new_position_effective_next_day
+scenario_order:
+  - {sequence: 1, id: R01, strategy: reference_v3_252, calendar: v3_legacy, execution: vendor_open, one_price_policy: legacy, slippage: normal, fee: legacy}
+  - {sequence: 2, id: R02, strategy: sleeve_20skip5_250_equal_risk, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: legacy, slippage: normal, fee: legacy}
+  - {sequence: 3, id: P01, strategy: reference_v3_252, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p0, slippage: normal, fee: corrected}
+  - {sequence: 4, id: P02, strategy: sleeve_20skip5_250_equal_risk, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p0, slippage: normal, fee: corrected}
+  - {sequence: 5, id: P03, strategy: reference_v3_252, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p1, slippage: normal, fee: corrected}
+  - {sequence: 6, id: P04, strategy: sleeve_20skip5_250_equal_risk, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p1, slippage: normal, fee: corrected}
+  - {sequence: 7, id: P05, strategy: reference_v3_252, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p2, slippage: normal, fee: corrected}
+  - {sequence: 8, id: P06, strategy: sleeve_20skip5_250_equal_risk, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p2, slippage: normal, fee: corrected}
+  - {sequence: 9, id: P07, strategy: reference_v3_252, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p1, slippage: fixed_1_tick, fee: corrected}
+  - {sequence: 10, id: P08, strategy: sleeve_20skip5_250_equal_risk, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p1, slippage: fixed_1_tick, fee: corrected}
+  - {sequence: 11, id: P09, strategy: reference_v3_252, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p1, slippage: fixed_3_tick, fee: corrected}
+  - {sequence: 12, id: P10, strategy: sleeve_20skip5_250_equal_risk, calendar: v4_2_repaired, execution: vendor_open, one_price_policy: p1, slippage: fixed_3_tick, fee: corrected}
+  - {sequence: 13, id: P11, strategy: reference_v3_252, calendar: v4_2_repaired, execution: next_close, one_price_policy: p1, slippage: normal, fee: corrected}
+  - {sequence: 14, id: P12, strategy: sleeve_20skip5_250_equal_risk, calendar: v4_2_repaired, execution: next_close, one_price_policy: p1, slippage: normal, fee: corrected}
+stop_conditions:
+  - preflight_transport_evidence_polluted
+  - registry_or_environment_gate_failed
+  - r01_or_r02_reproduction_failed
+  - causal_prefix_failed
+  - proxy_scope_failed
+  - accounting_reconciliation_failed
+  - account_insolvent
+  - attempt_cap_exceeded

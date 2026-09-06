@@ -1,0 +1,9 @@
+{
+  "registry_file_sha256": "7128d97e69b5837469e8ebee4027a3668943c6c652a6332072f5fcabc923d591",
+  "registry_semantic_sha256": "575a27644f80cf958b958330c1297f9a07697762d989c80987bb6eba64a53888",
+  "canonical_v6_file_sha256": "5149568f64959c8eada2fe4e9cf370df5a348ccf042fab119dd0b6286fb36cac",
+  "resolved_config_file_sha256": "e84717aa6efe5631dc0229e186a391ef206b016d2907019cfb3843816db58229",
+  "scenario_ids": ["R01", "R02", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P08", "P09", "P10", "P11", "P12"],
+  "locked_before_performance": true,
+  "performance_results_seen_before_lock": false
+}

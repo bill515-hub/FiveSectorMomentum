@@ -97,6 +97,7 @@
 | E52 | “计划可执行”可能被误读成“现在可一键跑 44 场”；实际 v6 包、resolved config 和两个 snapshot 尚未创建 | 明确当前只有规范可执行。先建 Phase 0 骨架，再只做 Phase 1A 三项 go/no-go；通过前不得启动 A01 |
 | E53 | 审计以某个不完整临时重跑目录推断 G2 必败，证据范围过宽 | 核验正式 v3 目录已有账户、信号、选择、成本和测试文件，v4.2 正式目录也较完整；仍须做字段级库存与逐键 diff，但不能在运行前宣判 G2 失败。历史从未生成的表按预注册规则标 `NOT_APPLICABLE`，核心订单/权益表缺失则停止 |
 | E54 | 有建议在限价覆盖失败后直接把 D 组降级为 `PROVISIONAL` | 不采纳自动降级。本 v1.4 的 `failure_action` 保持 `stop_before_A01_and_write_blocker`；任何代理限价研究必须由用户另行授权并另起注册，不能占用本计划 44 场 |
+| E55 | v1.4 §7.3 已禁止保证金强平，但事件示例和会计原因码仍残留 `MarginCallEvent`、`ForcedLiquidationOrder`、`MARGIN_FORCED_REDUCTION` | 纯一致性修正：事件改为 `MarginTargetReductionEvent` 与 `MarginUtilizationBreachDiagnostic`，原因码统一为机器注册源的 `MARGIN_TARGET_REDUCTION`；不改变任何经济行为、场景、阈值或计数 |
 
 v1.3 的 E46 作为审阅历史保留，但其执行结论由 E50—E51 明确取代。
 
