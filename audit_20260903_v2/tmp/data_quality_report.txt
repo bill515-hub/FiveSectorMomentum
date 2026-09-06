@@ -1,0 +1,142 @@
+=== bars_v2 columns ===
+['ts_code', 'date', 'pre_close', 'pre_settle', 'open', 'high', 'low', 'close', 'settlement', 'change1', 'change2', 'volume', 'amount', 'oi', 'oi_chg', 'instrument', 'point_value', 'tick_size', 'fallback_margin_rate', 'delist_date']
+bars rows=597541, contracts=2478, instruments=['A', 'AL', 'AP', 'B', 'BB', 'BR', 'BU', 'BZ', 'C', 'CF', 'CJ', 'CS', 'CY', 'EB', 'EG', 'FB', 'FG', 'FU', 'JD', 'JR', 'L', 'LH', 'LR', 'LU', 'M', 'MA', 'NR', 'OI', 'P', 'PF', 'PG', 'PK', 'PM', 'PP', 'PR', 'PX', 'RB', 'RI', 'RM', 'RR', 'RS', 'RU', 'SA', 'SC', 'SH', 'SP', 'SR', 'T', 'TA', 'UR', 'V', 'WH', 'Y']
+date range: 2014-01-02 00:00:00 .. 2026-08-31 00:00:00
+upper/lower_limit columns present: False
+long/short_margin_rate columns present: False
+trading_fee columns present: False
+settlement non-null ratio: 1.0000
+
+calendar open days: 14980 (2014-01-02 .. 2026-12-31)
+expected trading days 2015-01-01..2026-08-31 by independent calendar: 13590
+
+=== per-instrument calendar coverage ===
+instrument first_price_day  calendar_days_from_first  price_days  missing_price_days_vs_calendar  price_on_closed_days  mapping_days_without_price  duplicate_price_days
+        AL      2014-01-02                     13590        3079                               0                     0                           0                     0
+        AP      2017-12-22                     10540        2108                               0                     0                           0                     0
+         C      2014-01-02                     13590        3079                               0                     0                           0                     0
+        CF      2014-01-02                     13590        3079                               0                     0                           0                     0
+        FG      2014-01-02                     13590        3079                               0                     0                           0                     0
+        JD      2014-01-02                     13590        3079                               0                     0                           0                     0
+        LH      2021-01-08                      6840        1368                               0                     0                           0                     0
+         M      2014-01-02                     13590        3079                               0                     0                           0                     0
+        MA      2014-01-02                     13590        3079                               0                     0                           0                     0
+         P      2014-01-02                     13590        3079                               0                     0                           0                     0
+        RB      2014-01-02                     13590        3079                               0                     0                           0                     0
+        RU      2014-01-02                     13590        3079                               0                     0                           0                     0
+        SC      2018-03-26                     10240        2048                               0                     0                           0                     0
+        SP      2018-11-27                      9415        1883                               0                     0                           0                     0
+        SR      2014-01-02                     13590        3079                               0                     0                           0                     0
+         T      2015-03-20                     13394        2785                               0                     0                           0                     0
+        UR      2019-08-09                      8560        1712                               0                     0                           0                     0
+
+mapped (date,contract) rows without any bar: 0 of 45773
+mapped rows with high==low (locked board): 12 (0.026%)
+mapped rows with volume<=0: 0
+
+normalized panama: roll_count=2559, stitch_failures=104, rows=120028
+[{"instrument": "BU", "date": "2020-01-20", "old_contract": "BU1912.SHF", "new_contract": "BU2006.SHF"}, {"instrument": "JR", "date": "2015-01-08", "old_contract": "JR1501.ZCE", "new_contract": "JR1505.ZCE"}, {"instrument": "JR", "date": "2015-02-04", "old_contract": "JR1505.ZCE", "new_contract": "JR1503.ZCE"}, {"instrument": "JR", "date": "2015-03-19", "old_contract": "JR1503.ZCE", "new_contract": "JR1509.ZCE"}, {"instrument": "JR", "date": "2015-07-30", "old_contract": "JR1509.ZCE", "new_contract": "JR1511.ZCE"}, {"instrument": "JR", "date": "2016-02-25", "old_contract": "JR1511.ZCE", "new_contract": "JR1607.ZCE"}, {"instrument": "JR", "date": "2016-06-29", "old_contract": "JR1607.ZCE", "new_contract": "JR1609.ZCE"}, {"instrument": "JR", "date": "2016-09-13", "old_contract": "JR1609.ZCE", "new_contract": "JR1705.ZCE"}, {"instrument": "JR", "date": "2016-12-08", "old_contract": "JR1705.ZCE", "new_contract": "JR1711.ZCE"}, {"instrument": "JR", "date": "2017-03-23", "old_contract": "JR1711.ZCE", "new_contract": "JR1801.ZCE"}]
+
+normalized_v2 panama: roll_count=808, stitch_failures=0, rows=45773
+
+=== survivorship: fut_basic contracts per instrument (incl. delisted) ===
+instrument  fut_basic_contracts  delisted_before_20260901  contracts_in_bars  delisted_in_bars earliest_list_date
+        AL                  388                       376                150               148         1995-04-17
+        AP                   64                        57                 26                25         2017-12-22
+         C                  136                       130                 48                46         2004-09-22
+        CF                  149                       143                 38                36         2004-06-01
+        FG                  174                       162                 39                37         2012-12-03
+        JD                  156                       144                 61                59         2013-11-08
+        LH                   36                        30                 27                25         2021-01-08
+         M                  206                       198                 39                37         2000-07-17
+        MA                  147                       135                 36                34         2014-06-17
+         P                  236                       224                 40                38         2007-10-29
+        RB                  216                       204                 38                37         2009-03-27
+        RU                  326                       316                 39                37         1995-05-16
+        SC                  117                        97                 95                94         2018-03-26
+        SP                   99                        87                 34                32         2018-11-27
+        SR                  128                       122                 41                39         2006-01-06
+         T                   47                        44                 46                44         2015-03-20
+        UR                   92                        80                 23                21         2019-08-09
+
+config instruments missing from FALLBACK_ECONOMICS: NONE
+
+=== latest open-fee rule per instrument (v3+ fee model) ===
+instrument last_effective_from  fee_per_lot  fee_rate(万分数)        source_type  is_proxy  n_exact_open_rules
+        AL          2026-08-31          3.0           0.00 tushare_historical     False                  68
+        AP          2026-04-13          5.0           0.00 tushare_historical     False                  29
+         C          2026-08-17          1.2           0.00 tushare_historical     False                  48
+        CF          2026-08-14          4.3           0.00 tushare_historical     False                  42
+        FG          2026-08-19          2.0           0.00 tushare_historical     False                  43
+        JD          2026-08-10          1.5           0.00 tushare_historical     False                  62
+        LH          2026-08-06          1.0           0.00 tushare_historical     False                  28
+         M          2026-08-11          1.5           0.00 tushare_historical     False                  38
+        MA          2026-08-14          1.0           0.00 tushare_historical     False                  42
+         P          2026-08-12          2.5           0.00 tushare_historical     False                  40
+        RB          2026-04-08          0.0           0.10 tushare_historical     False                  19
+        RU          2026-08-31          3.0           0.00 tushare_historical     False                  18
+        SC          2026-08-31         20.0           0.00 tushare_historical     False                  70
+        SP          2026-08-31          0.0           0.02 tushare_historical     False                  27
+        SR          2026-08-14          2.0           0.00 tushare_historical     False                  42
+         T          2026-08-24          3.0           0.00 tushare_historical     False                  46
+        UR          2026-08-19          1.0           0.00 tushare_historical     False                  27
+
+=== tushare fee coverage (mapping-day basis) ===
+instrument_mapping  mapping_days  tushare_fee_days  coverage_ratio
+                AL          3079              1334        0.433258
+                AP          2108              2035        0.965370
+                 C          3079              3036        0.986034
+                CF          3079              2981        0.968171
+                FG          3079              2982        0.968496
+                JD          3079              3036        0.986034
+                LH          1368              1366        0.998538
+                 M          3079              2874        0.933420
+                MA          3079              2905        0.943488
+                 P          3079              3036        0.986034
+                RB          3079              1334        0.433258
+                RU          3079              1334        0.433258
+                SC          2048              1334        0.651367
+                SP          1883              1334        0.708444
+                SR          3079              2972        0.965248
+                 T          2785               365        0.131059
+                UR          1712              1615        0.943341
+
+=== fee rule interval coverage ===
+instrument  mapping_days  exact_tushare_days  proxy_days  exact_coverage_ratio
+        AL          3079                1334        1745              0.433258
+        AP          2108                2035          73              0.965370
+         C          3079                3079           0              1.000000
+        CF          3079                2981          98              0.968171
+        FG          3079                2982          97              0.968496
+        JD          3079                3078           1              0.999675
+        LH          1368                1368           0              1.000000
+         M          3079                2915         164              0.946736
+        MA          3079                2905         174              0.943488
+         P          3079                3078           1              0.999675
+        RB          3079                1372        1707              0.445599
+        RU          3079                1334        1745              0.433258
+        SC          2048                1334         714              0.651367
+        SP          1883                1334         549              0.708444
+        SR          3079                2972         107              0.965248
+         T          2785                2031         754              0.729264
+        UR          1712                1615          97              0.943341
+
+random 40 (contract,date) saved for cross-source check
+
+=== v1 wide-universe adjusted price missing days (top 15) ===
+instrument  days  missing
+        PM   987     1942
+        LR  1084     1871
+        JR  1452     1525
+        RI  1658     1421
+        RS  2372      682
+        WH  2618      461
+        CY  2130       63
+        BU  3041       38
+        FU  3066       13
+        BB  3075        4
+         B  3079        0
+        AL  3079        0
+        AP  2108        0
+        CS  2843        0
+        CJ  1781        0

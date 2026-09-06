@@ -1,0 +1,18 @@
+﻿instrument,kind,exchange,n_rows,distinct_trading_fee,distinct_trading_fee_rate,first_date,last_date
+AL,fixed_per_lot,SHFE,1334,[np.float64(3.0)],[np.float64(0.0)],2021-01-04,2026-08-31
+AP,fixed_per_lot,CZCE,2035,"[np.float64(0.5), np.float64(5.0), np.float64(10.0), np.float64(20.0)]",[np.float64(0.0)],2017-12-22,2026-08-31
+C,fixed_per_lot,DCE,3036,[np.float64(1.2)],[np.float64(0.0)],2014-01-02,2026-08-31
+CF,fixed_per_lot,CZCE,2981,"[np.float64(4.3), np.float64(6.0), np.float64(8.0), np.float64(10.0)]",[np.float64(0.0)],2014-01-02,2026-08-31
+FG,fixed_per_lot,CZCE,2982,"[np.float64(2.0), np.float64(3.0), np.float64(6.0), np.float64(10.0), np.float64(15.0)]",[np.float64(0.0)],2014-01-02,2026-08-31
+JD,fixed_per_lot,DCE,3036,"[np.float64(1.5), np.float64(3.0)]",[np.float64(0.0)],2014-01-02,2026-08-31
+LH,fixed_per_lot,DCE,1366,"[np.float64(1.0), np.float64(2.0)]",[np.float64(0.0)],2021-01-08,2026-08-31
+M,fixed_per_lot,DCE,2874,"[np.float64(1.5), np.float64(2.0)]",[np.float64(0.0)],2014-01-02,2026-08-31
+MA,fixed_per_lot,CZCE,2905,"[np.float64(1.0), np.float64(1.4), np.float64(2.0), np.float64(3.0), np.float64(6.0)]",[np.float64(0.0)],2014-01-02,2026-08-31
+P,fixed_per_lot,DCE,3036,"[np.float64(0.2), np.float64(2.5)]",[np.float64(0.0)],2014-01-02,2026-08-31
+RB,rate_based,SHFE,1334,[np.float64(0.0)],"[np.float64(0.1), np.float64(0.3)]",2021-01-04,2026-08-31
+RU,fixed_per_lot,SHFE,1334,[np.float64(3.0)],[np.float64(0.0)],2021-01-04,2026-08-31
+SC,fixed_per_lot,INE,1334,"[np.float64(20.0), np.float64(40.0)]",[np.float64(0.0)],2021-01-04,2026-08-31
+SP,rate_based,SHFE,1334,[np.float64(0.0)],"[np.float64(0.02), np.float64(0.05)]",2021-01-04,2026-08-31
+SR,fixed_per_lot,CZCE,2972,"[np.float64(2.0), np.float64(3.0)]",[np.float64(0.0)],2014-01-02,2026-08-31
+T,CFFEX_rate_as_perlot,CFFEX,365,[np.float64(3.0)],"[np.float64(0.0), np.float64(3.0)]",2015-03-20,2026-08-31
+UR,fixed_per_lot,CZCE,1615,"[np.float64(1.0), np.float64(2.0), np.float64(5.0), np.float64(10.0)]",[np.float64(0.0)],2020-01-02,2026-08-31

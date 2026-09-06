@@ -1,0 +1,8 @@
+﻿endpoint,case,status,rows,columns
+fut_settle,单合约 RB2410.SHF,ok,103,"['ts_code', 'trade_date', 'settle', 'trading_fee_rate', 'trading_fee', 'delivery_fee', 'b_hedging_margin_rate', 's_hedging_margin_rate', 'long_margin_rate', 'short_margin_rate']"
+fut_settle,单合约 MA401.ZCE,ok,0,"['ts_code', 'trade_date', 'settle', 'trading_fee_rate', 'trading_fee', 'delivery_fee', 'b_hedging_margin_rate', 's_hedging_margin_rate', 'long_margin_rate', 'short_margin_rate']"
+fut_settle,单合约 T2403.CFX,ok,9,"['ts_code', 'trade_date', 'settle', 'trading_fee_rate', 'trading_fee', 'delivery_fee', 'b_hedging_margin_rate', 's_hedging_margin_rate', 'long_margin_rate', 'short_margin_rate']"
+fut_settle,批量6合约(data_source同形),ok,0,"['ts_code', 'trade_date', 'settle', 'trading_fee_rate', 'trading_fee', 'delivery_fee', 'b_hedging_margin_rate', 's_hedging_margin_rate', 'long_margin_rate', 'short_margin_rate']"
+ft_limit,单合约 RB2410.SHF,ERROR:Exception: 抱歉，您没有接口(ft_limit)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。,-1,[]
+ft_limit,单合约 MA401.ZCE,ERROR:Exception: 抱歉，您没有接口(ft_limit)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。,-1,[]
+ft_limit,批量6合约(data_source同形),ERROR:Exception: 抱歉，您没有接口(ft_limit)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。,-1,[]

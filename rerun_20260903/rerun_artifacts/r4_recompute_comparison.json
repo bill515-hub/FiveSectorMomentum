@@ -1,0 +1,110 @@
+{
+  "S1": {
+    "scores": {
+      "rows_recorded": 52343,
+      "rows_mine": 52343,
+      "rows_both": 52343,
+      "rows_matched_exact": 45348,
+      "max_abs_diff": 0.0,
+      "sign_agreement_rate": 1.0,
+      "sign_comparable": 45334,
+      "nan_cells_matching": 6995,
+      "nan_cells_total": 6995
+    },
+    "selections": {
+      "rows_recorded": 8112,
+      "rows_mine": 8112,
+      "rows_both": 8112,
+      "direction_matches": 8112,
+      "score_matches": 8112,
+      "max_score_diff": 0.0,
+      "only_mine": 0,
+      "only_recorded": 0
+    },
+    "targets": {
+      "rows_recorded": 21402,
+      "rows_mine": 21402,
+      "rows_both": 21402,
+      "optimal_match": 21402,
+      "buffered_match": 21402,
+      "normal_rebalance_day_match": 21402,
+      "emergency_trigger_match": 21402,
+      "full_match": 21402,
+      "only_mine": 0,
+      "only_recorded": 0,
+      "disagreements": []
+    }
+  },
+  "G1": {
+    "scores": {
+      "rows_recorded": 52343,
+      "rows_mine": 52343,
+      "rows_both": 52343,
+      "rows_matched_exact": 45348,
+      "max_abs_diff": 0.0,
+      "sign_agreement_rate": 1.0,
+      "sign_comparable": 45222,
+      "nan_cells_matching": 6995,
+      "nan_cells_total": 6995
+    },
+    "selections": {
+      "rows_recorded": 4188,
+      "rows_mine": 4188,
+      "rows_both": 4188,
+      "direction_matches": 4188,
+      "score_matches": 4188,
+      "max_score_diff": 0.0,
+      "only_mine": 0,
+      "only_recorded": 0
+    },
+    "targets": {
+      "rows_recorded": 18502,
+      "rows_mine": 18502,
+      "rows_both": 18502,
+      "optimal_match": 18502,
+      "buffered_match": 18502,
+      "normal_rebalance_day_match": 18502,
+      "emergency_trigger_match": 18502,
+      "full_match": 18502,
+      "only_mine": 0,
+      "only_recorded": 0,
+      "disagreements": []
+    }
+  },
+  "G2": {
+    "scores": {
+      "rows_recorded": 52343,
+      "rows_mine": 52343,
+      "rows_both": 52343,
+      "rows_matched_exact": 41523,
+      "max_abs_diff": 0.0,
+      "sign_agreement_rate": 1.0,
+      "sign_comparable": 41494,
+      "nan_cells_matching": 10820,
+      "nan_cells_total": 10820
+    },
+    "selections": {
+      "rows_recorded": 3924,
+      "rows_mine": 3924,
+      "rows_both": 3924,
+      "direction_matches": 3924,
+      "score_matches": 3924,
+      "max_score_diff": 0.0,
+      "only_mine": 0,
+      "only_recorded": 0
+    },
+    "targets": {
+      "rows_recorded": 18638,
+      "rows_mine": 18638,
+      "rows_both": 18638,
+      "optimal_match": 18638,
+      "buffered_match": 18638,
+      "normal_rebalance_day_match": 18638,
+      "emergency_trigger_match": 18638,
+      "full_match": 18638,
+      "only_mine": 0,
+      "only_recorded": 0,
+      "disagreements": []
+    }
+  }
+}

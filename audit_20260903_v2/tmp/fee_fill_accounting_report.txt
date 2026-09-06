@@ -1,0 +1,172 @@
+=== earliest exact rule effective_from per instrument (open) ===
+RB: exact rules span 2021-01-04 .. 2026-08-31
+T: exact rules span 2015-03-20 .. 2026-08-31
+AL: exact rules span 2021-01-04 .. 2026-08-31
+SC: exact rules span 2021-01-04 .. 2026-08-31
+RU: exact rules span 2021-01-04 .. 2026-08-31
+SP: exact rules span 2021-01-04 .. 2026-08-31
+FG: exact rules span 2014-01-02 .. 2026-08-31
+MA: exact rules span 2014-01-02 .. 2026-08-31
+UR: exact rules span 2020-01-02 .. 2026-08-31
+C: exact rules span 2014-01-02 .. 2026-08-31
+M: exact rules span 2014-01-02 .. 2026-08-31
+P: exact rules span 2014-01-02 .. 2026-08-31
+JD: exact rules span 2014-01-02 .. 2026-08-31
+LH: exact rules span 2021-01-08 .. 2026-08-31
+CF: exact rules span 2014-01-02 .. 2026-08-31
+SR: exact rules span 2014-01-02 .. 2026-08-31
+AP: exact rules span 2017-12-22 .. 2026-08-31
+
+=== v3_formal_baseline: fills=4604, lots=417534 ===
+commission(client)=1,272,705  exchange=848,470  x1.5 check=1,272,705  slippage=14,599,400
+                  segments    lots          exch        client
+transaction_type                                              
+close_non_today       2789  206530  409524.78088  614287.17132
+open                  1815  211004  438944.98536  658417.47804
+proxy fee segments: 2028 of 4604 (44.0%), proxy client fee=432,746 (34.0% of total)
+            segments        client
+instrument                        
+AL               519  251091.00000
+AP                40    5227.50000
+C                 30   12587.40000
+CF                62   11874.45000
+FG               147   25764.00000
+JD                37   21908.25000
+LH                32    1081.50000
+M                 34    6720.75000
+MA                65    4318.50000
+P                 35    5103.75000
+RB               424   13325.08605
+RU               201    9855.00000
+SC                71   14070.00000
+SP                26     455.32986
+SR                51    3801.00000
+T                252   44919.00000
+UR                 2     643.50000
+
+per-instrument client fee per lot / close_today segments:
+             lots  client_per_lot  close_today_segments
+instrument                                             
+AL          87637        4.500000                   0.0
+AP           3864        7.994953                   0.0
+C           42984        1.800000                   0.0
+CF          11022        6.671693                   0.0
+FG          37518        6.424556                   0.0
+JD          38266        2.250000                   0.0
+LH           2341        1.615335                   0.0
+M           16078        2.250000                   0.0
+MA          17918        1.937912                   0.0
+P            8122        3.750000                   0.0
+RB          90602        0.536828                   0.0
+RU           5775        4.500000                   0.0
+SC           1090       30.165138                   0.0
+SP          15082        0.363340                   0.0
+SR           9468        4.299271                   0.0
+T           17047        4.500000                   0.0
+UR          12720        2.662264                   0.0
+execution lag days: min=1, max=11, share>0=100.00%
+
+=== v4_2_S1_sleeve: fills=8190, lots=1343559 ===
+commission(client)=3,998,744  exchange=2,665,829  x1.5 check=3,998,744  slippage=43,237,000
+                  segments    lots          exch        client
+transaction_type                                              
+close_non_today       5232  666897  1.298953e+06  1.948430e+06
+open                  2958  676662  1.366876e+06  2.050314e+06
+proxy fee segments: 2411 of 8190 (29.4%), proxy client fee=833,826 (20.9% of total)
+            segments        client
+instrument                        
+AL               449  367866.00000
+AP                51   15337.50000
+C                 37   39738.60000
+CF                76   18963.00000
+FG               126   45324.00000
+JD                52   48183.75000
+LH                59    2922.00000
+M                 63   28368.00000
+MA                91   11214.00000
+P                 53   11767.50000
+RB               380   29217.03495
+RU               361   22684.50000
+SC               204   48750.00000
+SP               105    1712.71470
+SR                57   14412.00000
+T                239  124654.50000
+UR                 8    2710.50000
+
+per-instrument client fee per lot / close_today segments:
+              lots  client_per_lot  close_today_segments
+instrument                                              
+AL          174478        4.500000                   0.0
+AP           23168        7.973412                   0.0
+C           172500        1.800000                   0.0
+CF           32051        6.590251                   0.0
+FG          101053        7.056159                   0.0
+JD          127572        2.252540                   0.0
+LH           10807        1.665448                   0.0
+M            76372        2.250825                   0.0
+MA           71896        2.000039                   0.0
+P            26254        3.738173                   0.0
+RB          286438        0.523837                   0.0
+RU           21468        4.500000                   0.0
+SC            4306       30.306549                   0.0
+SP           48776        0.353585                   0.0
+SR           57592        4.245225                   0.0
+T            61422        4.500000                   0.0
+UR           47406        3.366852                   0.0
+execution lag days: min=1, max=11, share>0=100.00%
+
+=== locked-board mapped days ===
+      date   contract              source instrument    ts_code    high     low    open   close   volume       oi
+2021-10-08 CF2201.ZCE tushare_fut_mapping         CF CF2201.ZCE 21255.0 21255.0 21255.0 21255.0  34107.0 398110.0
+2020-02-03 JD2005.DCE tushare_fut_mapping         JD JD2005.DCE  3203.0  3203.0  3203.0  3203.0  33506.0 203467.0
+2020-03-09 MA2005.ZCE tushare_fut_mapping         MA MA2005.ZCE  1918.0  1918.0  1918.0  1918.0  36122.0 819696.0
+2020-02-03  P2005.DCE tushare_fut_mapping          P  P2005.DCE  5676.0  5676.0  5676.0  5676.0 122242.0 382737.0
+2020-02-03 RU2005.SHF tushare_fut_mapping         RU RU2005.SHF 11145.0 11145.0 11145.0 11145.0  20732.0 187187.0
+2025-04-07 RU2509.SHF tushare_fut_mapping         RU RU2509.SHF 15580.0 15580.0 15580.0 15580.0  11284.0 131346.0
+2020-02-03 SC2003.INE tushare_fut_mapping         SC SC2003.INE   415.5   415.5   415.5   415.5    771.0  11922.0
+2020-03-09 SC2005.INE tushare_fut_mapping         SC SC2005.INE   338.1   338.1   338.1   338.1    302.0  41059.0
+2020-03-10 SC2005.INE tushare_fut_mapping         SC SC2005.INE   307.6   307.6   307.6   307.6   1371.0  40535.0
+2024-10-08 SC2411.INE tushare_fut_mapping         SC SC2411.INE   580.1   580.1   580.1   580.1   2339.0  19879.0
+2025-04-07 SC2505.INE tushare_fut_mapping         SC SC2505.INE   510.1   510.1   510.1   510.1    772.0  22614.0
+2021-10-20 UR2201.ZCE tushare_fut_mapping         UR UR2201.ZCE  2978.0  2978.0  2978.0  2978.0  10094.0  67661.0
+v3 fills on locked days: 1
+S1 fills on locked days: 6
+
+=== independent accounting recompute: v3_formal_baseline ===
+daily equity identity max err: 0.000000
+gross-fees=net max err: 0.000000
+fills commission vs equity fees: 0.000000
+instrument pnl vs account pnl: 0.000000
+terminal equity identity: 0.000000
+[independent path] worst contract-day net_pnl err: 0.000000 at (Timestamp('2025-12-29 00:00:00'), 'T2603.CFX')
+[independent path] worst day net_pnl err: 0.000000
+
+=== independent accounting recompute: v4_2_S1 ===
+daily equity identity max err: 0.000000
+gross-fees=net max err: 0.000000
+fills commission vs equity fees: 0.000000
+instrument pnl vs account pnl: 0.000000
+terminal equity identity: 0.000000
+[independent path] worst contract-day net_pnl err: 0.000000 at (Timestamp('2023-12-11 00:00:00'), 'T2403.CFX')
+[independent path] worst day net_pnl err: 0.000000
+
+=== v2 fallback fee per lot (exchange-actual comparison baseline) ===
+             lots   commission  avg_notional  avg_fallback     per_lot
+instrument                                                            
+AL          72076  1279016.455  8.421612e+04     16.843225   17.745386
+AP           3166    49535.576  8.090989e+04     16.181977   15.646107
+C           36350   182644.158  2.096347e+04      5.052920    5.024599
+CF           9191   131245.090  7.081659e+04     14.163317   14.279740
+FG          31848   177953.576  2.751775e+04      5.917417    5.587590
+JD          30464   152320.000  1.878617e+04      5.000000    5.000000
+LH           1787    75845.072  2.329775e+05     46.595500   42.442682
+M           13542    91011.816  3.352612e+04      6.705224    6.720707
+MA          15376    79609.798  2.367057e+04      5.288651    5.177536
+P            7252    94582.464  7.180786e+04     14.361571   13.042259
+RB          73688   511512.670  3.481294e+04      7.090824    6.941601
+RU           4911   138236.270  1.344823e+05     26.896454   28.148294
+SC            860    86579.180  5.106018e+05    102.120359  100.673465
+SP          12040   131629.704  5.801427e+04     11.602854   10.932700
+SR           8326    98653.846  5.740368e+04     11.480736   11.848889
+T           14032  2905927.850  1.015692e+06    203.138407  207.092920
+UR          10160    81677.844  4.292863e+04      8.585725    8.039158

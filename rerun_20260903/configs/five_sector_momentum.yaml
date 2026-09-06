@@ -1,0 +1,100 @@
+run:
+  start: "2015-01-01"
+  end: "2026-08-31"
+  warmup_start: "2014-01-01"
+  sample_split: "2022-01-01"
+  initial_capital: 10000000
+  base_currency: CNY
+
+data:
+  source: tushare
+  root: data
+  token_env: TUSHARE_TOKEN
+  exchanges: [CFFEX, DCE, CZCE, SHFE, INE, GFEX]
+  use_vendor_main_mapping: true
+  # 当日收盘后的映射只用于生成次日开盘订单；引擎本身已有一日执行滞后。
+  vendor_mapping_lag_days: 0
+
+signal:
+  price: close
+  method: price_diff_sharpe
+  lookback_days: 252
+  annualization_days: 252
+  update_frequency: weekly
+  min_eligible_instruments: 2
+  long_threshold: 0.0
+  short_threshold: 0.0
+
+volatility:
+  method: robust_ewma_price_diff
+  ewma_span_days: 35
+  min_periods: 10
+  floor_enabled: true
+  floor_quantile: 0.05
+  floor_lookback_days: 500
+  floor_min_periods: 100
+  absolute_min: 1.0e-10
+  annualization_days: 252
+
+eligibility:
+  liquidity_lookback_days: 20
+  liquidity_min_periods: 10
+  min_median_volume: 1000
+  min_median_open_interest: 3000
+
+portfolio:
+  annual_vol_targets: [0.25, 0.275, 0.30]
+  default_annual_vol_target: 0.275
+  sector_risk_weights:
+    ferrous: 0.20
+    agriculture: 0.20
+    chemical_energy: 0.20
+    government_bond: 0.20
+    base_metal: 0.20
+  position_buffer_fraction: 0.10
+  # 45%为下单目标上限，预留约5个百分点应对隔夜价格与权益变动。
+  max_margin_utilization: 0.45
+  broker_margin_multiplier: 1.25
+  max_gross_notional_leverage: 5.0
+  max_position_fraction_of_median_volume: 0.05
+  max_position_fraction_of_median_open_interest: 0.01
+  covariance_scaling:
+    enabled: true
+    lookback_days: 252
+    min_periods: 126
+    minimum_multiplier: 0.50
+    maximum_multiplier: 2.50
+
+execution:
+  timing: next_open
+  unfilled_modes: [retry, cancel_recalculate]
+  slippage_ticks: [1.0, 2.0]
+  max_volume_participation: 0.05
+  fallback_commission_per_lot: 5.0
+  fallback_commission_rate: 0.0002
+  reject_locked_limit: true
+
+roll:
+  stitch_method: panama
+  forward_fill: false
+  fallback_rule: open_interest
+  fallback_confirmation_days: 2
+  fallback_switch_ratio: 1.10
+  minimum_days_to_expiry: 20
+  forbid_backward_roll: true
+
+universe:
+  absolute:
+    ferrous: [RB]
+    government_bond: [T]
+    base_metal: [AL]
+  cross_sectional:
+    agriculture:
+      # 动态纳入：只有在该品种当时已上市、主力数据存在且预热完成时才合格。
+      DCE: [A, B, C, CS, FB, BB, JD, LH, M, P, RR, Y]
+      CZCE: [AP, CF, CJ, CY, JR, LR, OI, PK, PM, RI, RM, RS, SR, WH]
+    chemical_energy:
+      DCE: [BZ, EB, EG, L, PG, PP, V]
+      CZCE: [FG, MA, PF, PR, PX, SA, SH, TA, UR]
+      SHFE: [BR, BU, FU, RU, SP]
+      INE: [LU, NR, SC]

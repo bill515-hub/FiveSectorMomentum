@@ -1,0 +1,8 @@
+﻿run,date,contract,quantity,side,board,fill_price,open_price,pre_settle,settle,adverse_to_board,easy_side
+v3_formal_baseline,2021-10-08,CF2201.ZCE,80,买入,涨停,21265.0,21255.0,19680.0,21255.0,True,False
+v4_2_S1,2020-02-03,JD2005.DCE,86,买入,跌停,3205.0,3203.0,3444.0,3203.0,False,True
+v4_2_S1,2020-02-03,JD2005.DCE,44,买入,跌停,3205.0,3203.0,3444.0,3203.0,False,True
+v4_2_S1,2020-02-03,P2005.DCE,-42,卖出,跌停,5672.0,5676.0,6102.0,5676.0,True,False
+v4_2_S1,2020-02-03,RU2005.SHF,21,买入,跌停,11155.0,11145.0,12250.0,11145.0,False,True
+v4_2_S1,2020-03-09,SC2005.INE,-2,卖出,跌停,337.9,338.1,359.7,338.1,True,False
+v4_2_S1,2021-10-08,CF2201.ZCE,84,买入,涨停,21265.0,21255.0,19680.0,21255.0,True,False

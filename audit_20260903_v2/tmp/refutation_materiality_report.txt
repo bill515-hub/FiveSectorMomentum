@@ -1,0 +1,54 @@
+v3_formal_baseline: ending_equity=55,639,975  net_profit=45,639,975  commission=1,272,705  slippage=14,599,400
+v4_2_S1_sleeve: ending_equity=118,575,796  net_profit=108,575,796  commission=3,998,744  slippage=43,237,000
+v4_2_G1_single20skip5: ending_equity=49,294,071  net_profit=39,294,071  commission=2,974,119  slippage=29,199,350
+v4_2_G2_single250: ending_equity=78,283,967  net_profit=68,283,967  commission=1,683,108  slippage=19,858,155
+
+=== 反证1：若 tushare 费率字段为千分数（证据支持），改用 /1000 后的成本差 ===
+v3_formal_baseline: RB+SP lots=105,684  client fee=54,118
+  其中费率部分(client, /10000口径)=54,118  每手部分=0
+  若按千分数口径(/1000)，额外手续费=487,058；占总成本=3.07%；占净利=1.07%
+  修正后净利=45,152,917（原 45,639,975）
+v4_2_S1_sleeve: RB+SP lots=335,214  client fee=167,293
+  其中费率部分(client, /10000口径)=167,293  每手部分=0
+  若按千分数口径(/1000)，额外手续费=1,505,639；占总成本=3.19%；占净利=1.39%
+  修正后净利=107,070,157（原 108,575,796）
+
+=== 反证2：锁板日 6 笔 S1 成交的方向与当日涨跌方向 ===
+S1 2020-02-03 JD2005.DCE 买入 86手 @open=3203.0 prev_close=3441.0 跌停/低开 顺方向易成交=True
+S1 2020-02-03 JD2005.DCE 买入 44手 @open=3203.0 prev_close=3441.0 跌停/低开 顺方向易成交=True
+S1 2020-02-03 P2005.DCE 卖出 42手 @open=5676.0 prev_close=6094.0 跌停/低开 顺方向易成交=False
+S1 2020-02-03 RU2005.SHF 买入 21手 @open=11145.0 prev_close=12085.0 跌停/低开 顺方向易成交=True
+S1 2020-03-09 SC2005.INE 卖出 2手 @open=338.1 prev_close=357.3 跌停/低开 顺方向易成交=False
+S1 2021-10-08 CF2201.ZCE 买入 84手 @open=21255.0 prev_close=20005.0 涨停/高开 顺方向易成交=False
+v3 2021-10-08 CF2201.ZCE 买入 80手 @open=21255.0 prev_close=20005.0 涨停/高开 顺方向易成交=False
+
+=== 反证3：v4_1 修正袖套的平今分段计数 ===
+04_corrected_sleeve__strategy_sleeve_all_equal_risk: fills=9295, close_today_segments=0
+04_corrected_sleeve__strategy_sleeve_all_equal_risk_fixed_3tick: fills=9229, close_today_segments=0
+04_corrected_sleeve__strategy_sleeve_fast_equal_risk: fills=9080, close_today_segments=0
+04_corrected_sleeve__strategy_sleeve_fast_equal_risk_fixed_3tick: fills=9015, close_today_segments=0
+04_corrected_sleeve__strategy_sleeve_slow_equal_risk: fills=8528, close_today_segments=0
+04_corrected_sleeve__strategy_sleeve_slow_equal_risk_fixed_3tick: fills=8335, close_today_segments=0
+
+=== 反证4：独立日历每年开市日数（ sanity：中国期货≈238-248 日/年） ===
+date
+2014     980
+2015     976
+2016     976
+2017    1128
+2018    1215
+2019    1220
+2020    1215
+2021    1215
+2022    1210
+2023    1210
+2024    1210
+2025    1215
+2026    1210
+exchanges in calendar: ['CFFEX', 'CZCE', 'DCE', 'INE', 'SHFE']
+
+=== 反证5：RB 代理期(2015-2020)成交规模（若真实费率为万1，代理=万0.1亦低估10倍） ===
+v3: RB总手数=90,602, 2015-2020手数=14,133, 其中代理规则手数=14,133
+  代理期名义成交额=4.37亿；按万1×1.5客户倍数重估手续费=65,614 vs 记录值=6,561
+S1: RB总手数=286,438, 2015-2020手数=37,457, 其中代理规则手数=37,457
+  代理期名义成交额=12.35亿；按万1×1.5客户倍数重估手续费=185,253 vs 记录值=18,525

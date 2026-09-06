@@ -1,0 +1,4 @@
+﻿sina_symbol,instrument,common_days,first,last,daily_return_corr,same_sign_days,repo_norm_end,sina_norm_end,cum_gap_pct
+RB0,RB,3074,2014-01-02,2026-08-31,-0.037,0.9138,198.17,89.05,122.53
+T0,T,2335,2017-01-17,2026-08-31,0.9608,0.9837,127.66,113.18,12.79
+SC0,SC,2047,2018-03-26,2026-08-31,0.9297,0.9795,182.13,147.73,23.29

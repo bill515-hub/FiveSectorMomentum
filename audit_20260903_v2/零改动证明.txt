@@ -1,0 +1,40 @@
+零改动证明（audit_20260903_v2）
+==========================================================
+
+审计对象仓库：D:\FiveSectorMomentum
+快照方法：find . -type f（排除本审计目录 audit_20260903_v2/）逐文件 SHA-256 + 字节大小，
+         pre 快照 2026-09-03T05:37:57Z（4758 个文件），post 快照 2026-09-03T08:1x:xxZ（4761 个文件），
+         两快照均含 git HEAD / porcelain / stash 状态（两快照 git 状态一致：
+         HEAD=093b24a2297711d4d40cd75f3ce1c624eaaf038e；工作区除三个未跟踪目录外无变更）。
+
+差异比对（diff pre_hashes post_hashes）完整结果：
+----------------------------------------------------------
+939a940
+> 35b012f2...  ./.mimosa/hook-status/sess_...-a4a6944983.json          （新增）
+2803d2803
+< a17ab037...  ./.mimosa/hook-state/sess_....json                     （内容变更）
+2876a2877
+> a4fa8c57...  ./.mimosa/hook-state/sess_....json                     （对应新内容）
+4017a4019
+> dea3ffcc...  ./.mimosa/finding-ledger/v1/events/batch-posttooluse-....json （新增）
+4098a4101
+> e2ced761...  ./.mimosa/finding-ledger/v1/events/batch-pretooluse-....json  （新增）
+----------------------------------------------------------
+
+结论：
+1. 上述全部差异位于 ./.mimosa/ —— 这是 Mimosa 安全插件的会话簿记目录
+   （记录本审计会话中插件对工具调用的拦截/放行事件），非被审计项目的任何产物，
+   亦非审计师命令的直接写入目标；其在会话期间被插件自身更新属于工具行为。
+2. 除此以外，仓库其余全部内容 —— src/、scripts/、tests/、configs/、docs/、
+   data/、outputs/、audit_20260903/（前次审计产物）、.git/、根目录全部文件 ——
+   两快照逐文件 SHA-256 完全一致：0 修改、0 删除、0 重命名、0 移动、0 新增。
+3. 审计期间未运行任何会写回原路径的回测/下载；所有 Python 进程带
+   PYTHONDONTWRITEBYTECODE=1（仓库 __pycache__ 哈希未变即为佐证）；
+   ruff 以 --no-cache 运行且安装于 audit_20260903_v2/tmp/pylibs；
+   pip --target 仅写审计目录。
+
+判定：在“仓库既有内容”口径下（剔除审计工具自身簿记目录 .mimosa/），
+本审计满足零改动要求；.mimosa/ 的差异如实披露如上，不做隐瞒。
+
+（复核方式：任何第三方可在仓库根重跑审计日志.md §2 的两条快照命令并与本目录
+ pre_audit_manifest.txt / post_audit_manifest.txt 逐行比对。）

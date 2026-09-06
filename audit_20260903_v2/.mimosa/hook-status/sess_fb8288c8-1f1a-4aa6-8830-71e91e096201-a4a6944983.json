@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-09-03T14:06:43.812Z",
+  "sessionId": "sess_fb8288c8-1f1a-4aa6-8830-71e91e096201",
+  "event": "PostToolUse",
+  "toolName": "Write",
+  "file": "D:\\FiveSectorMomentum\\verify_20260903\\tmp\\t1_fee_unit_audit.py",
+  "outcome": "inconclusive",
+  "coverage": "partial",
+  "findingCount": 0,
+  "durationMs": 11,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}

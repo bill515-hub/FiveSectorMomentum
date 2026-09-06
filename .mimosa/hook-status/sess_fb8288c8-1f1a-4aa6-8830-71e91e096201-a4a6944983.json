@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-09-03T15:07:56.048Z",
+  "sessionId": "sess_fb8288c8-1f1a-4aa6-8830-71e91e096201",
+  "event": "PostToolUse",
+  "toolName": "Write",
+  "file": "verify_20260903/reports/验证总报告_逐条分析.md",
+  "outcome": "clear",
+  "coverage": "complete",
+  "findingCount": 0,
+  "durationMs": 4,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}
