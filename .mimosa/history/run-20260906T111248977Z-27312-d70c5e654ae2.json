@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "mimosa-finding-history/v1",
+  "runId": "20260906T111248977Z-27312-d70c5e654ae2",
+  "runStatus": "inconclusive",
+  "errors": [
+    "baseline-read:verify_20260903/tmp/v61_result_audit.py: baseline_snapshot_unreadable: file is missing from task baseline",
+    "scan:verify_20260903/tmp/v61_result_audit.py: scanner_failed: spawnSync D:\\deepseek harness\\node.exe ETIMEDOUT"
+  ],
+  "target": ".",
+  "revision": "fea96ceda676e7929ef28d14c4c56ffebde12a31",
+  "diffHash": "4f04419b27eb8cfc14055d4be826b181cdd46766c3936a4cd6b041841818f34a",
+  "rulesVersion": "unavailable",
+  "recordedAt": "2026-09-06T11:12:48.977Z",
+  "timing": {
+    "startedAt": "2026-09-06T11:12:45.819Z",
+    "completedAt": "2026-09-06T11:12:48.977Z",
+    "durationMs": 3158
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "total": 0,
+    "modelCalls": 0,
+    "measurement": "known-zero"
+  },
+  "findings": {
+    "total": 0,
+    "bySeverity": {},
+    "byStatus": {}
+  },
+  "coverage": {
+    "status": "partial",
+    "reasonCounts": {
+      "baseline_snapshot_unreadable": 1,
+      "scanner_failed": 1,
+      "project_check_failed": 2
+    }
+  },
+  "evidenceBoundary": "static_only",
+  "immutableReport": ".mimosa/reports/task-review-sess_fb8288c8-1f1a-4aa6-8830-71e91e096201-20260906T111248977Z-27312-d70c5e654ae2.json"
+}

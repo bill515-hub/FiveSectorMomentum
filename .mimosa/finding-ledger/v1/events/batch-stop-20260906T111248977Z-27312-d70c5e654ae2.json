@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260906T111248977Z-27312-d70c5e654ae2",
+  "runId": "20260906T111248977Z-27312-d70c5e654ae2",
+  "runStatus": "inconclusive",
+  "coverage": {
+    "status": "partial",
+    "reasons": [
+      {
+        "code": "baseline_snapshot_unreadable",
+        "stage": "baseline-read",
+        "target": "verify_20260903/tmp/v61_result_audit.py",
+        "detail": "file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "verify_20260903/tmp/v61_result_audit.py",
+        "detail": "spawnSync D:\\deepseek harness\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "baseline-read",
+        "target": "verify_20260903/tmp/v61_result_audit.py",
+        "detail": "baseline_snapshot_unreadable: file is missing from task baseline",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "verify_20260903/tmp/v61_result_audit.py",
+        "detail": "scanner_failed: spawnSync D:\\deepseek harness\\node.exe ETIMEDOUT",
+        "affectsCompletion": true
+      }
+    ]
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "fea96ceda676e7929ef28d14c4c56ffebde12a31",
+  "diffHash": "4f04419b27eb8cfc14055d4be826b181cdd46766c3936a4cd6b041841818f34a",
+  "rulesVersion": "unavailable",
+  "sessionHash": "a4a6944983296d1b72c3cc854123d0497129f6f3e7d7b6491ac22772d8b179a5",
+  "reportRef": ".mimosa/reports/task-review-sess_fb8288c8-1f1a-4aa6-8830-71e91e096201-20260906T111248977Z-27312-d70c5e654ae2.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [],
+  "recordedAt": "2026-09-06T11:12:49.837Z"
+}

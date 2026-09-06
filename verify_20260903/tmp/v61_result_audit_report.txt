@@ -1,0 +1,54 @@
+[兼容锚] R01 vs v3: 行数 4604==4604=True, 键全等行=4604/4604, price最大差=0, commission最大差=0
+[兼容锚] R02 vs S1: 行数 8190==8190=True, 键全等行=8190/8190, price最大差=0, commission最大差=0
+
+[P03 vs R01] fills 4485 vs 4604; commission 2,576,770 vs 1,272,705; slippage 21,882,065 vs 14,599,400
+P03 fills tick 相关列: ['base_slippage_ticks', 'roll_extra_ticks', 'impact_ticks', 'total_slippage_ticks']
+P03 base_slippage_ticks 按品种(前12)：
+            mean  min  max
+instrument                
+AL           1.0  1.0  1.0
+AP           2.0  2.0  2.0
+C            2.0  2.0  2.0
+CF           2.0  2.0  2.0
+FG           2.0  2.0  2.0
+JD           2.0  2.0  2.0
+LH           2.0  2.0  2.0
+M            2.0  2.0  2.0
+MA           2.0  2.0  2.0
+P            2.0  2.0  2.0
+RB           1.0  1.0  1.0
+RU           2.0  2.0  2.0
+P03 slippage 按原因:
+reason
+margin_forced           79215.0
+normal_rebalance      6561520.0
+roll                 12286620.0
+signal_exit           2934355.0
+volatility_forced       20355.0
+R01 slippage 按原因:
+reason
+margin_forced          61780.0
+normal_rebalance     3943755.0
+roll                 8611630.0
+signal_exit          1964880.0
+volatility_forced      17355.0
+
+[P03 拒单] 总数=173, 原因分布:
+reason
+PROXY_SLIPPAGE_OUTSIDE_DAILY_RANGE          171
+DAILY_ONE_PRICE_DIRECTIONAL_PROXY_REJECT      2
+
+[假想盈亏] 可评估拒单 173 条
+  首日假想盈亏: 合计=-20,226,635, 均值=-116,917, 亏损笔占比=100.0%
+  5日假想盈亏: 合计=-22,870,240, 均值=-132,198, 亏损笔占比=66.5%
+  按原因分解(首日):
+                                          count         sum           mean
+reason                                                                    
+DAILY_ONE_PRICE_DIRECTIONAL_PROXY_REJECT      2    -24150.0  -12075.000000
+PROXY_SLIPPAGE_OUTSIDE_DAILY_RANGE          171 -20202485.0 -118143.187135
+
+[R02] AL净贡献=50,112,174, 正利润合计=139,576,915, AL占正利润=35.9%
+
+[P04] AL净贡献=119,324,754, 正利润合计=359,840,667, AL占正利润=33.2%
+
+[P03 会计] 逐日残差=7.45e-09, 毛-费=净残差=0.00e+00, fills费=账面费差=0.00e+00
