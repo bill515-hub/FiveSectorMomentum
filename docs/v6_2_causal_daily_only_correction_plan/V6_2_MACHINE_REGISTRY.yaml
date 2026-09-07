@@ -1,0 +1,118 @@
+registry_version: "1.0"
+registry_status: LOCKED_BEFORE_PERFORMANCE
+research_status: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION
+authority:
+  readme: docs/v6_2_causal_daily_only_correction_plan/00_README_AND_AUTHORITY.md
+  task: docs/v6_2_causal_daily_only_correction_plan/V6_2_CAUSAL_DAILY_ONLY_CORRECTION_TASK_v1_0_FINAL.md
+inheritance:
+  canonical_v6_registry: docs/v6_20260905_research_and_test_plan/V6_MACHINE_REGISTRY.yaml
+  v6_common_parameters_semantic_sha256: 531ba01c9908f7714d41b6bc677d954c4ec61470723526335f693a91580242c3
+  v6_1_registry: docs/v6_1_daily_only_provisional_plan/V6_1_MACHINE_REGISTRY.yaml
+  v6_1_result_root: outputs/v6_1_20260906_155224
+run_budget:
+  valid_full_history_scenarios: 12
+  reserve_attempts: 2
+  global_attempt_cap: 14
+  probes_tests_bridges_and_pure_analysis_count_as_attempt: false
+strategies:
+  - reference_v3_252
+  - sleeve_20skip5_250_equal_risk
+common_parameters_source: V6_MACHINE_REGISTRY.yaml.common_parameters
+common_parameter_overrides: {}
+causal_execution:
+  order_formed_on: completed_t_day_information
+  vendor_open_reference: d_day_vendor_daily_open
+  next_close_reference: d_day_vendor_daily_close
+  same_day_range_filter: false
+  clip_to_same_day_range: false
+  accepted_execution_fields: [d_date, d_contract, d_open, t_lagged_liquidity, t_account_state, t_margin_state]
+  forbidden_acceptance_fields: [d_high, d_low, d_close, d_settlement, d_final_volume, d_final_open_interest]
+  participation_capacity: t_day_20_day_median_volume
+  max_volume_participation: 0.05
+  missing_lagged_volume_proxy: 10000
+  slippage_accounting: independent_cash_cost_once
+  fill_accounting_price: execution_reference_rounded_to_tick_grid
+  one_price_shape_use: post_trade_diagnostic_only
+  high_low_is_limit_truth: false
+  vendor_open_session_verified: false
+margin:
+  normalized_rules: data/v6_2/margin_normalized_rules.csv
+  normalized_rules_file_sha256: e4124811ef4a00562fa5eb7493fead450311ecd936219dc89b7a4a64f11093a3
+  normalized_rules_content_sha256: a23499077104919f817ae7abb043a95a288682cea41b7d430bc9fdd48c426b93162
+  preperformance_coverage: data/v6_2/margin_preperformance_coverage.csv
+  preperformance_coverage_file_sha256: ef9b5d135bb2643d26d4c29521b1e2f42223a68d2d2cb2b967e6c51757fc80ca
+  preperformance_coverage_content_sha256: 2b61ef528895db5eb94f70d464ae87d7e2a2d05380d7025ea09c945ce1b35c1f
+  minimum_lag_trading_days: 1
+  max_stale_trading_days: 5
+  long_uses: long_margin_rate
+  short_uses: short_margin_rate
+  commodity_unit_rule: raw_decimal_identity
+  treasury_unit_rule: raw_percent_divide_100
+  customer_multiplier: 1.25
+  vendor_floor: frozen_static_fallback
+  usable_vendor_source: VENDOR_DAILY_UNVERIFIED_LAGGED_FLOORED_BY_STATIC_FALLBACK
+  fallback_source: STATIC_FALLBACK_PROXY
+  official_margin_claim_allowed: false
+one_price_challenge:
+  path: data/v6_2/one_price_shape_challenge_set.csv
+  file_sha256: b48d84b71149f275ec8d16baae28239041733ae16a3cbfb7711ce7bb4bb08b81
+  content_sha256: b37fc35ee2d51b2651ed331224d3943a8dcca56102c51a75592072adec1c4c69
+  row_count: 13
+  official_limit_truth: false
+fee_semantics:
+  r_compatibility: v6_1_p03_p04_exact
+  economic_scenarios:
+    proportional_rate_divisor: 1000
+    treasury_fixed_fee_special_case: true
+    customer_multiplier: 1.5
+    transaction_types: [open, close_non_today, close_today]
+slippage:
+  normal_base_ticks: {T: 1, RB: 1, AL: 1, other: 2}
+  low_sensitivity_base_ticks: fixed_1_tick
+  high_sensitivity_base_ticks: fixed_3_tick
+  roll_extra_ticks: 1
+  participation_impact_ticks: inherited_v6_v1_4
+  amount_formula: abs_lots_times_total_ticks_times_tick_size_times_point_value
+  changes_same_order_eligibility_or_quantity: false
+scenario_order:
+  - {sequence: 1, id: R01, strategy: reference_v3_252, engine: v6_1_compat, execution: vendor_open_with_v6_1_range_filter, margin_mode: static_fallback, slippage: normal_embedded_v6_1, purpose: reproduce_v6_1_P03}
+  - {sequence: 2, id: R02, strategy: sleeve_20skip5_250_equal_risk, engine: v6_1_compat, execution: vendor_open_with_v6_1_range_filter, margin_mode: static_fallback, slippage: normal_embedded_v6_1, purpose: reproduce_v6_1_P04}
+  - {sequence: 3, id: B01, strategy: reference_v3_252, engine: v6_2_causal, execution: vendor_open, margin_mode: static_fallback, slippage: normal, purpose: execution_correction}
+  - {sequence: 4, id: B02, strategy: sleeve_20skip5_250_equal_risk, engine: v6_2_causal, execution: vendor_open, margin_mode: static_fallback, slippage: normal, purpose: execution_correction}
+  - {sequence: 5, id: B03, strategy: reference_v3_252, engine: v6_2_causal, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal, purpose: formal_v6_2_daily_reference}
+  - {sequence: 6, id: B04, strategy: sleeve_20skip5_250_equal_risk, engine: v6_2_causal, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal, purpose: formal_v6_2_daily_candidate}
+  - {sequence: 7, id: S01, strategy: reference_v3_252, engine: v6_2_causal, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: fixed_1_tick, purpose: low_slippage_sensitivity}
+  - {sequence: 8, id: S02, strategy: sleeve_20skip5_250_equal_risk, engine: v6_2_causal, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: fixed_1_tick, purpose: low_slippage_sensitivity}
+  - {sequence: 9, id: S03, strategy: reference_v3_252, engine: v6_2_causal, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: fixed_3_tick, purpose: high_slippage_sensitivity}
+  - {sequence: 10, id: S04, strategy: sleeve_20skip5_250_equal_risk, engine: v6_2_causal, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: fixed_3_tick, purpose: high_slippage_sensitivity}
+  - {sequence: 11, id: T01, strategy: reference_v3_252, engine: v6_2_causal, execution: next_close, margin_mode: lagged_vendor_with_static_floor, slippage: normal, purpose: timing_sensitivity}
+  - {sequence: 12, id: T02, strategy: sleeve_20skip5_250_equal_risk, engine: v6_2_causal, execution: next_close, margin_mode: lagged_vendor_with_static_floor, slippage: normal, purpose: timing_sensitivity}
+single_factor_comparisons:
+  - {from: R01, to: B01, allowed_change: remove_same_day_range_filter_and_switch_to_cash_once}
+  - {from: R02, to: B02, allowed_change: remove_same_day_range_filter_and_switch_to_cash_once}
+  - {from: B01, to: B03, allowed_change: margin_data_path_only}
+  - {from: B02, to: B04, allowed_change: margin_data_path_only}
+  - {from: B03, to: S01, allowed_change: base_slippage_ticks_only}
+  - {from: B04, to: S02, allowed_change: base_slippage_ticks_only}
+  - {from: B03, to: S03, allowed_change: base_slippage_ticks_only}
+  - {from: B04, to: S04, allowed_change: base_slippage_ticks_only}
+  - {from: B03, to: T01, allowed_change: execution_reference_and_new_position_pnl_boundary_only}
+  - {from: B04, to: T02, allowed_change: execution_reference_and_new_position_pnl_boundary_only}
+stop_conditions:
+  - old_path_hash_changed
+  - registry_or_data_gate_failed
+  - r01_or_r02_reproduction_failed
+  - future_execution_field_accessed
+  - margin_unit_lag_direction_or_source_unproven
+  - slippage_duplicate_charge
+  - accounting_reconciliation_failed
+  - nondeterministic_result
+  - secret_detected
+  - account_insolvent
+  - attempt_cap_exceeded
+report_forbidden_claims:
+  - real_open_fill
+  - true_limit_up_or_down
+  - real_order_book_or_market_impact
+  - official_historical_margin
+  - live_achievable_return

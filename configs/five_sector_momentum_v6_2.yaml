@@ -1,0 +1,29 @@
+version: v6_2
+research_status: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION
+machine_registry: docs/v6_2_causal_daily_only_correction_plan/V6_2_MACHINE_REGISTRY.yaml
+canonical_v6_registry: docs/v6_20260905_research_and_test_plan/V6_MACHINE_REGISTRY.yaml
+legacy_v6_1_registry: docs/v6_1_daily_only_provisional_plan/V6_1_MACHINE_REGISTRY.yaml
+legacy_v4_2_config: configs/five_sector_momentum_v4_2_repaired.yaml
+data:
+  normalized_directory: data/normalized_v2
+  vendor_margin_cache: data/v3/fees/tushare_fut_settle_daily_raw.pkl
+  normalized_margin_rules: data/v6_2/margin_normalized_rules.pkl
+  static_margin_source: data/normalized_v2/instrument_meta.pkl
+  v6_2_root: data/v6_2
+outputs:
+  root: outputs
+  attempt_ledger: outputs/V6_2_GLOBAL_ATTEMPT_LEDGER.csv
+execution:
+  full_history_attempt_cap: 14
+  scenario_count: 12
+  next_day_execution: true
+  vendor_open_same_day_range_filter: false
+  same_day_final_volume_or_oi_for_capacity: false
+  slippage_as_cash_once: true
+  integer_ticks_only: true
+  customer_fee_multiplier: 1.5
+  corrected_fee_rate_divisor: 1000
+  margin_customer_multiplier: 1.25
+  margin_minimum_lag_trading_days: 1
+  margin_max_stale_trading_days: 5
+  watermark: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION

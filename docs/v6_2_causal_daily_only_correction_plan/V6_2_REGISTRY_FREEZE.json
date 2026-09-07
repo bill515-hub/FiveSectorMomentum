@@ -1,0 +1,14 @@
+{
+  "registry_file_sha256": "5a728b6769e70761350c2cd73ae72b35acfef8251e9e4f9b5b2cc99dddc9edcc",
+  "registry_semantic_sha256": "2ed7cc4ebb89c0b122e07dc8d13112695b1311f869c0d6617986258630c71ced",
+  "canonical_v6_file_sha256": "5149568f64959c8eada2fe4e9cf370df5a348ccf042fab119dd0b6286fb36cac",
+  "resolved_config_file_sha256": "9f8f22c3a1c6566ee6c40b83bcf90ac4453a2b19f3f76d9cb06479377dde307f",
+  "scenario_ids": [
+    "R01", "R02", "B01", "B02", "B03", "B04",
+    "S01", "S02", "S03", "S04", "T01", "T02"
+  ],
+  "locked_before_performance": true,
+  "performance_results_seen_before_lock": false,
+  "phase_a_status": "PHASE_A_READY_FOR_REGISTRY_FREEZE",
+  "frozen_at_local": "2026-09-06T22:02:40.3543510+08:00"
+}

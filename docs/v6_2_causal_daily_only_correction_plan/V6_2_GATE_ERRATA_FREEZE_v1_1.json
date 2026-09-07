@@ -1,0 +1,14 @@
+{
+  "status": "LOCKED_BEFORE_ANY_SAVED_V6_2_PERFORMANCE",
+  "authorized_by_user": true,
+  "economic_registry_changed": false,
+  "machine_registry_sha256": "5a728b6769e70761350c2cd73ae72b35acfef8251e9e4f9b5b2cc99dddc9edcc",
+  "resolved_config_sha256": "9f8f22c3a1c6566ee6c40b83bcf90ac4453a2b19f3f76d9cb06479377dde307f",
+  "errata_sha256": "a982f4a06ee1e383a965081a0d427e8deb350b4bea8daacbfa5ce071e3274adb",
+  "attempt_state_machine_sha256": "d2f3d0ae672c50cd6fe85a4f465f0be156ef8d93644701aaf76ef3fe897c8edc",
+  "workflow_sha256": "602291603e451baedade7478c9fb2048f293d05797276981998eb213f3c0661f",
+  "gate_tests_sha256": "3483ef38eef43bb6ba66befa770b89ed6731194b95f09967196385e1f0bf8d2e",
+  "failed_attempts_before_freeze": 1,
+  "saved_v6_2_performance_before_freeze": false,
+  "frozen_at_local": "2026-09-06T22:24:28.9526493+08:00"
+}
