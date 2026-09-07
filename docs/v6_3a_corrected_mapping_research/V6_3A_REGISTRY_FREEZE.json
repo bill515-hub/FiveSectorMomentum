@@ -1,0 +1,207 @@
+{
+  "registry_file_sha256": "74a50c162657d92cb5a7e84d98e89195c2d731eef6a13598b9d9bd754a821e04",
+  "registry_semantic_sha256": "43b68168d4e4bb2021cdf4e1577bb22ead515e354db9939fba63c076c1377a09",
+  "resolved_config_file_sha256": "9e1263e16d1cb253652e66b1928dd8d5b8da4f30d067bab418959d2857b23b2d",
+  "source_hashes": [
+    {
+      "path": "src/five_sector_momentum/calendar_v4_2.py",
+      "sha256": "fef6b5add4c1ba7fd1ba8a325500194bc74e59ebfa0f7da3cf7b0c8ff1c1bd37"
+    },
+    {
+      "path": "src/five_sector_momentum/costs_v3.py",
+      "sha256": "450c6abeabfeb89c8837d3bd721cf4039867eb34f8aacddfa195831661233bdd"
+    },
+    {
+      "path": "src/five_sector_momentum/data_pipeline.py",
+      "sha256": "f6aa02444b06a29327437f45884b3ad1822624868c5e1f5f1517b23d2ec29978"
+    },
+    {
+      "path": "src/five_sector_momentum/engine_v3.py",
+      "sha256": "a5bb07b2cc7251b847376e59bbc0d174f17447d556d39ef6124216d41eb3a37d"
+    },
+    {
+      "path": "src/five_sector_momentum/engine_v4_1.py",
+      "sha256": "1e08d3dd781688f5a4393fe6cf47b1bed3bfa786788e487ea469f46c25f438ad"
+    },
+    {
+      "path": "src/five_sector_momentum/engine_v4_2.py",
+      "sha256": "3223f994fe2561b9566103628de36cdcabdad60220ad5cd407d355843e93dba5"
+    },
+    {
+      "path": "src/five_sector_momentum/signals.py",
+      "sha256": "4c3a7157566d0b93d74a7b0b56c02316421524ed9b2c9fe2320d473f7f1e42a8"
+    },
+    {
+      "path": "src/five_sector_momentum/signals_v4.py",
+      "sha256": "3d5bfcfc58376b39610db9aaf787918aa1a9c8af56dc85660ba6d89dd5e55eef"
+    },
+    {
+      "path": "src/five_sector_momentum/signals_v4_2.py",
+      "sha256": "29182bbc10f568b834772a91c5eb154fbb46f70243148f257db947e58e4cd86d"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_1/engine.py",
+      "sha256": "d02d84703d812c39e42b29b380b8a008066795bef621255ab0765681891b9f24"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_2/engine.py",
+      "sha256": "a1f9da9a9c79c9b867c744934ffd502a3375c8072638d287e5b5f1bd5555288f"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_2/margin.py",
+      "sha256": "a8d63da853a18049b0aa62787507931ffc68c41dffdd06f5e9438c329273016c"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3/__init__.py",
+      "sha256": "3b106b3166ab26c9193bc8918b19fbf8fe0c34477777b6577128e2057986e9f1"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3/attempts.py",
+      "sha256": "0d97d53c594a3f3c88c14d28ee96e793cc44b8da77545c6f55efe746e2d1601a"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3/canonical.py",
+      "sha256": "5e8fc8ffc8d1368819c5817280677d121fd98035fa540c3506d1ebd1cceca41b"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3/engine.py",
+      "sha256": "6b2d1d379d879b28310ca6cc5eff321b32e0e0a35f39b18b79ae5883804478d2"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3/preflight.py",
+      "sha256": "e4106bed96dae2796e84b69327973a32a269ef08c1fd1b8a25a21409edb066be"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3/registry.py",
+      "sha256": "a85c6a34195f4122952635e17017b9ee2d2ae67333f723fd8cb03e5593b059df"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/__init__.py",
+      "sha256": "0de75214f27af2c385aeeebb2d8505b68fd5d6432e216316b237963a67d3a329"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/analysis.py",
+      "sha256": "118aaec006daa45ded9eb02fc818df33e6dcbd37602442ae3abadcf3f4edcbca"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/attempts.py",
+      "sha256": "0f3a2f9290c6a8740d74fba7cfaf16bddb91a5c02160e40fc46461367eb32761"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/canonical.py",
+      "sha256": "89daf6732237b066ae1ad964461837e9f6909bc47558ef05d8d4893f260d4734"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/data.py",
+      "sha256": "34d8952ac8fbdc60c98a5a7e368f5c180f2e70decce1cc7f3e0d21776670589d"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/engine.py",
+      "sha256": "49c3037057a6dc512af4fcade52b88c7feb6ab263fd9fa72c66f5f3a3df1e2a9"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/phase0.py",
+      "sha256": "3b1ed03891a6448e542942ba1b0c19ce8388dd5229c7696d4ede82e60975759e"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/registry.py",
+      "sha256": "e6a0a3027ba091d6666796cf31846f7d1cc55ebe8f057ebe0c36553545136927"
+    },
+    {
+      "path": "src/five_sector_momentum/v6_3a/workflow.py",
+      "sha256": "9d03f03b943100e7bfc71de1fd79ca485aebfb750d86f3edec09f555bdcf36c9"
+    },
+    {
+      "path": "tests/v6_3/__init__.py",
+      "sha256": "caf5f0fb258fa6ea76a962fee7691c84f542212ef24eade4762c94844c40cd5f"
+    },
+    {
+      "path": "tests/v6_3/test_v6_3_phase0_and_engine.py",
+      "sha256": "49c1c09a743d58e4c08110a14b8377c1bee862684c0d3c0a2afb5a556ad5534d"
+    },
+    {
+      "path": "tests/v6_3a/test_v6_3a_mapping_and_registry.py",
+      "sha256": "b287a755fcf261426ef7352b649a1977e8535ef6fa599e5435547adfc08f4e07"
+    }
+  ],
+  "input_hashes": [
+    {
+      "path": "configs/five_sector_momentum_v6_3a.yaml",
+      "sha256": "9e1263e16d1cb253652e66b1928dd8d5b8da4f30d067bab418959d2857b23b2d"
+    },
+    {
+      "path": "data/normalized_v2/bars.pkl",
+      "sha256": "e96d15b128e5aa70b5b1d6896eba658c2905f255e2f4053456d9b5b1c6644e1f"
+    },
+    {
+      "path": "data/normalized_v2/contract_meta.pkl",
+      "sha256": "0864785388af4c0c9b918444e5dcf39eb9e7afd2a5212ff7f61b70bc37ca0189"
+    },
+    {
+      "path": "data/normalized_v2/mapping.pkl",
+      "sha256": "d0b6656806b56a4f12d0c3dca1f0051366b9c6773724473c4d221c94bab6314f"
+    },
+    {
+      "path": "data/v3/fees/historical_fee_rules.pkl",
+      "sha256": "63e842ae9c509c81920303af7bdd23648a925c3722cc9092846cbbae2b74c386"
+    },
+    {
+      "path": "data/v6_2/margin_normalized_rules.pkl",
+      "sha256": "fc31fb03882d93b47b35c64af4502ecc400c81957351e9251419b589c8c0f217"
+    },
+    {
+      "path": "data/v6_3a/adjusted_prices_corrected.pkl",
+      "sha256": "ba140ba926057e6a41accf6b2307e6bc25cf74fe5372f8a877b095099248e6a3"
+    },
+    {
+      "path": "data/v6_3a/mapping_corrected.pkl",
+      "sha256": "975e414b35e3ba368270a1036c56bc89210d5d8d779417028e2701901f910cf5"
+    },
+    {
+      "path": "data/v6_3a/mapping_correction_events.pkl",
+      "sha256": "138cd414bef1ee61af01dfe9f689dac3ea88ca6d27a7c3f0cd3a6481b830419d"
+    },
+    {
+      "path": "data/v6_3a/multiple_prices_corrected.pkl",
+      "sha256": "e9471560090dc002c7757980d0545a809434755ab38759f698e43ae1b517ac41"
+    },
+    {
+      "path": "docs/v6_3a_corrected_mapping_research/V6_3A_EXPERIMENT_REGISTRY.md",
+      "sha256": "4e91e7caa0643de0bc0b85624bcb0519a06c9db90c34234f03bf5d140987c5c7"
+    },
+    {
+      "path": "docs/v6_3a_corrected_mapping_research/V6_3A_MACHINE_REGISTRY.yaml",
+      "sha256": "74a50c162657d92cb5a7e84d98e89195c2d731eef6a13598b9d9bd754a821e04"
+    },
+    {
+      "path": "docs/v6_3a_corrected_mapping_research/V6_3A_MAPPING_CORRECTION_ADDENDUM.md",
+      "sha256": "b532f843a26616a88b30beb1593f1c71cf8ff15f7787ecb9caadeb1dee00df05"
+    }
+  ],
+  "source_bundle_sha256": "4e15b71984d5451b50d0ff55125bc3398ed24eb4a2b0691e52d89c53a8fd05a6",
+  "input_bundle_sha256": "c262c734f2c957309e04422c4ceae83438d319dbf9c4399273b90f30f34ded7f",
+  "scenario_ids": [
+    "G01",
+    "G02",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "D01",
+    "D02",
+    "T01",
+    "T02",
+    "T03",
+    "N01",
+    "N02",
+    "T04"
+  ],
+  "locked_before_performance": true,
+  "performance_results_seen_before_lock": false,
+  "mapping_corrected_content_sha256": "6d6fefde6f19a8ed0d27dd542a2cfe8c0334b01e909a02da1cb7d927d5218570",
+  "adjusted_corrected_content_sha256": "b757638eb39d830b0073988e15bd024ca91a90b224414451e074144a378ada0e",
+  "correction_event_count": 35
+}

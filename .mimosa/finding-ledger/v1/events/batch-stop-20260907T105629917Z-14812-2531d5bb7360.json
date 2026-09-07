@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260907T105629917Z-14812-2531d5bb7360",
+  "runId": "20260907T105629917Z-14812-2531d5bb7360",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "41daf357b4b689a089a3dfb5a912ee101ac825ac",
+  "diffHash": "432c064693d3a27cc5ec8f4b01c782e5864bf0bacea323e444d9a49b508194c7",
+  "rulesVersion": "unavailable",
+  "sessionHash": "a4a6944983296d1b72c3cc854123d0497129f6f3e7d7b6491ac22772d8b179a5",
+  "reportRef": ".mimosa/reports/task-review-sess_fb8288c8-1f1a-4aa6-8830-71e91e096201-20260907T105629917Z-14812-2531d5bb7360.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "verify_20260903/tmp/fill_timing_check.py",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-09-07T10:56:30.357Z"
+}

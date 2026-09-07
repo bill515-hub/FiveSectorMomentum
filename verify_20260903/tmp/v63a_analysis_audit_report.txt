@@ -1,0 +1,33 @@
+日收益矩阵: (2834, 7), 日期 2015-01-05..2026-08-31
+[日度Pearson] D01~S03: 我的计算=0.5261
+[日度Pearson] S03~S07: 我的计算=0.4814
+[日度Pearson] D01~S07: 我的计算=0.3370
+[日度Pearson] G01~S07: 我的计算=0.9644
+[日度Pearson] G01~G02: 我的计算=0.7666
+[日度Pearson] G02~T01: 我的计算=0.9233
+[月度Pearson] D01~S03: 我的计算=0.4498 (n=140)
+[月度Pearson] S03~S07: 我的计算=0.4745 (n=140)
+[月度Pearson] D01~S07: 我的计算=0.2738 (n=140)
+[月度Pearson] G01~S07: 我的计算=0.9736 (n=140)
+[年度Pearson完整年] G01~S07: 我的计算=0.9633 (n=11)
+[年度Pearson完整年] G02~T01: 我的计算=0.9498 (n=11)
+[Carver复算] G02: years=11.070, mean_annual=0.2499, avg_dd=-0.1100, sd=0.2314, sharpe=1.0799, skew=0.1669, lower=1.2387, upper=1.2080
+[Carver复算] T01: years=11.070, mean_annual=0.2019, avg_dd=-0.1354, sd=0.2312, sharpe=0.8731, skew=0.3647, lower=1.2439, upper=1.3298
+[Carver复算] S03: years=11.070, mean_annual=0.0560, avg_dd=-0.2970, sd=0.2397, sharpe=0.2336, skew=0.5424, lower=1.1072, upper=1.2130
+[Carver报告值] G02: years=11.070, mean_annual=0.2499, avg_dd=-0.1100, sd=0.2314, sharpe=1.0799, skew=0.1669, lower=1.2387, upper=1.2080
+[Carver报告值] T01: years=11.070, mean_annual=0.2019, avg_dd=-0.1354, sd=0.2312, sharpe=0.8731, skew=0.3647, lower=1.2439, upper=1.3298
+[Carver报告值] S03: years=11.070, mean_annual=0.0560, avg_dd=-0.2970, sd=0.2397, sharpe=0.2336, skew=0.5424, lower=1.1072, upper=1.2130
+[WY] full T01_minus_G02: mean_diff=-0.00019, HAC_SE=0.00014, |t|=1.386, p_adj=0.2771
+[WY] full T01_minus_G01: mean_diff=+0.00008, HAC_SE=0.00027, |t|=0.308, p_adj=0.7504
+[WY] in_sample T01_minus_G01: mean_diff=+0.00037, HAC_SE=0.00034, |t|=1.072, p_adj=0.4661
+[WY] in_sample T01_minus_G02: mean_diff=-0.00004, HAC_SE=0.00017, |t|=0.227, p_adj=0.8158
+[WY] validation_incomplete T01_minus_G02: mean_diff=-0.00041, HAC_SE=0.00021, |t|=1.929, p_adj=0.1010
+[WY] validation_incomplete T01_minus_G01: mean_diff=-0.00035, HAC_SE=0.00041, |t|=0.838, p_adj=0.4055
+[WY独立复算] validation T01-G02: n=1129, mean=-0.00041, HAC19_SE=0.00716, t=-1.929
+[WY独立复算] full T01-G01: n=2834, mean=+0.00008, HAC19_SE=0.01412, t=0.308
+
+[A05] v4_2_repaired.yaml 当前SHA-256=45c373b25c49d742a44ccbc971dd703a89b7926ca0faeb3ed819e65fef7030bd
+[A05] 声明值=45c373b25c49d742a44ccbc971dd703a89b7926ca0faeb3ed819e65fef7030bd
+[A05] 一致=True
+
+[G01/S07] 期末权益 G01=53,918,380, S07=77,540,939, 差=-23,622,559

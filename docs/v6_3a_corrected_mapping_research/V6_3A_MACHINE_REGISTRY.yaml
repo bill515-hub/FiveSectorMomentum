@@ -1,0 +1,103 @@
+registry_version: "1.0_FINAL"
+registry_status: LOCKED_BEFORE_PERFORMANCE
+research_status: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION
+authority:
+  base_plan: docs/v6_3_three_horizon_and_single_window_plan/V6_3_THREE_HORIZON_AND_SINGLE_WINDOW_RESEARCH_PLAN.md
+  correction_addendum: docs/v6_3a_corrected_mapping_research/V6_3A_MAPPING_CORRECTION_ADDENDUM.md
+  experiment_registry: docs/v6_3a_corrected_mapping_research/V6_3A_EXPERIMENT_REGISTRY.md
+mapping_correction:
+  input: data/normalized_v2/mapping.pkl
+  output: data/v6_3a/mapping_corrected.pkl
+  rule: causal_hold_last_accepted_contract_when_proposed_expiry_moves_backward
+  source_code: V6_3A_CAUSAL_HOLD_NO_BACKWARD_EXPIRY
+  minimum_days_to_expiry: 20
+  require_same_day_positive_volume: true
+  require_same_day_finite_close: true
+  future_lookahead_allowed: false
+  rebuild_panama: true
+  modify_legacy_data: false
+baseline:
+  G01: corrected_mapping_reference_252
+  G02: corrected_mapping_sleeve_20skip5_250_equal_risk
+  legacy_bridge_only: [v6_2_B03, v6_2_B04]
+  exact_legacy_reproduction_required: false
+run_budget:
+  valid_full_history_scenarios: 17
+  reserve_attempts: 2
+  global_attempt_cap: 19
+signal:
+  price_input: causal_panama_adjusted_close
+  return_input: absolute_price_difference
+  annualization_days: 252
+  ddof: 1
+  complete_window_required: true
+  forecast_scaling: false
+  forecast_clipping: false
+  regular_horizons: [20, 40, 60, 90, 120, 180, 250]
+  skip_recent_days_diagnostics: {20: 5, 60: 5}
+  baseline_horizon: 252
+selection:
+  cross_sectional_sectors: [agriculture, chemical_energy]
+  absolute_instruments: [RB, T, AL]
+  missing_budget_transfer: false
+risk:
+  sector_relative_risk_weight: 0.20
+  double_sleeve_fraction_within_sector: 0.50
+  triple_sleeve_fraction_within_sector: 0.3333333333333333
+  final_portfolio_annual_vol_target: 0.275
+  relative_budget_correlation_optimized: false
+execution:
+  order_formed_on: completed_weekly_signal_close
+  fill_day: next_trading_day
+  vendor_open_reference: d_day_vendor_daily_open_proxy
+  next_close_reference: d_day_vendor_daily_close_proxy
+  same_day_range_filter: false
+  participation_capacity: t_day_20_day_median_volume
+  slippage_accounting: independent_cash_cost_once
+  next_close_complete_daily_settlement: true
+cost:
+  customer_fee_multiplier: 1.5
+  proportional_fee_divisor: 1000
+  normal_base_ticks: {T: 1, RB: 1, AL: 1, other: 2}
+  fixed_tick_sensitivity: [1, 3]
+  roll_extra_ticks: 1
+margin:
+  mode: lagged_vendor_with_static_floor
+  minimum_lag_trading_days: 1
+  maximum_stale_trading_days: 5
+scenario_order:
+  - {sequence: 1, id: G01, strategy: reference_v3_252, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 2, id: G02, strategy: sleeve_20skip5_250_equal_risk, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 3, id: S01, strategy: single_20, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 4, id: S02, strategy: single_40, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 5, id: S03, strategy: single_60, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 6, id: S04, strategy: single_90, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 7, id: S05, strategy: single_120, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 8, id: S06, strategy: single_180, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 9, id: S07, strategy: single_250, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 10, id: D01, strategy: single_20_skip5, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 11, id: D02, strategy: single_60_skip5, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 12, id: T01, strategy: sleeve_20skip5_60_250_equal_risk, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 13, id: T02, strategy: sleeve_20skip5_60_250_equal_risk, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: fixed_1_tick}
+  - {sequence: 14, id: T03, strategy: sleeve_20skip5_60_250_equal_risk, execution: vendor_open, margin_mode: lagged_vendor_with_static_floor, slippage: fixed_3_tick}
+  - {sequence: 15, id: N01, strategy: reference_v3_252, execution: next_close, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 16, id: N02, strategy: sleeve_20skip5_250_equal_risk, execution: next_close, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+  - {sequence: 17, id: T04, strategy: sleeve_20skip5_60_250_equal_risk, execution: next_close, margin_mode: lagged_vendor_with_static_floor, slippage: normal}
+statistics:
+  bootstrap_members: [G01, G02, S01, S02, S03, S04, S05, S06, S07, D01, D02, T01]
+  primary_block_length: 20
+  sensitivity_block_lengths: [60, 126]
+  repetitions: 5000
+  random_generator: PCG64
+  seed: 20260907
+  formal_hypotheses: [T01_minus_G01, T01_minus_G02]
+  westfall_young_stepdown_max_t: true
+  fwer: 0.10
+recommendation:
+  veto_conditions: [1, 8]
+  minimum_non_veto_passes: 4
+lockbox:
+  starts_after: "2026-09-05"
+  minimum_common_trading_days: 252
+  historical_data_end: "2026-08-31"
+  read_or_score_in_this_run: false

@@ -1,0 +1,27 @@
+version: v6_3a
+research_status: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION
+machine_registry: docs/v6_3a_corrected_mapping_research/V6_3A_MACHINE_REGISTRY.yaml
+base_engine_config: configs/five_sector_momentum_v4_2_repaired.yaml
+data:
+  legacy_normalized: data/normalized_v2
+  corrected_root: data/v6_3a
+  corrected_mapping: data/v6_3a/mapping_corrected.pkl
+  corrected_multiple_prices: data/v6_3a/multiple_prices_corrected.pkl
+  corrected_adjusted_prices: data/v6_3a/adjusted_prices_corrected.pkl
+execution:
+  scenario_count: 17
+  attempt_cap: 19
+  attempt_ledger: outputs/V6_3A_GLOBAL_ATTEMPT_LEDGER.csv
+signal:
+  regular_horizons: [20, 40, 60, 90, 120, 180, 250]
+  skip5_horizons: [20, 60]
+  reference_horizon: 252
+sleeves:
+  double: [single_20_skip5, single_250]
+  triple: [single_20_skip5, single_60, single_250]
+statistics:
+  bootstrap_members: [G01, G02, S01, S02, S03, S04, S05, S06, S07, D01, D02, T01]
+  block_lengths: [20, 60, 126]
+  repetitions: 5000
+  seed: 20260907
+watermark: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION

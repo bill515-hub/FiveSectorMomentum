@@ -1,0 +1,32 @@
+{
+  "status": "POSTRUN_SUPPLEMENTAL_ATTESTATION_NOT_RETROACTIVE_FREEZE",
+  "original_freeze_unchanged": true,
+  "source_run": "outputs/v6_3a_20260907_134158",
+  "independent_audit_output": "outputs/v6_3a_independent_audit_20260907_180842",
+  "base_engine_config": {
+    "path": "configs/five_sector_momentum_v4_2_repaired.yaml",
+    "audit_time_sha256": "45c373b25c49d742a44ccbc971dd703a89b7926ca0faeb3ed819e65fef7030bd",
+    "last_write_time": "2026-09-03T09:14:50+08:00",
+    "first_attempt_started_at": "2026-09-07T13:43:59.364211",
+    "git_diff_at_audit": "EMPTY",
+    "limitation": "This is mitigating post-run evidence, not a cryptographic record of the bytes at run time."
+  },
+  "checker": {
+    "path": "scripts/v6_3a_independent_audit_v2.py",
+    "sha256": "d9bf6933fe68d149546224c3c48bf69d18e3001afac61bd930dac15561ef8482"
+  },
+  "checker_tests": {
+    "path": "tests/v6_3a_postrun/test_independent_audit_metrics.py",
+    "sha256": "86e45e041fb5d01b7d3830cfe51f7735bf612f1e0fad0d523451b63e45136d2a"
+  },
+  "authoritative_postrun_tables": [
+    {
+      "path": "outputs/v6_3a_independent_audit_20260907_180842/audited_westfall_young_stepdown.csv",
+      "sha256": "01fd24905f9fd1251fda8a8794aed188d1a50ba6f5540e32492e329117d1f5c9"
+    },
+    {
+      "path": "outputs/v6_3a_independent_audit_20260907_180842/performance_characteristics_all.csv",
+      "sha256": "9ce836ba3bcd41762a5f080952f3ff69f69cc4267fe4629bf4ccf0f2e4b66a48"
+    }
+  ]
+}

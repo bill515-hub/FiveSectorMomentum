@@ -1,0 +1,50 @@
+version: v6_3
+research_status: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION
+machine_registry: docs/v6_3_three_horizon_and_single_window_plan/V6_3_MACHINE_REGISTRY.yaml
+legacy_v4_2_config: configs/five_sector_momentum_v4_2_repaired.yaml
+legacy_v6_2_registry: docs/v6_2_causal_daily_only_correction_plan/V6_2_MACHINE_REGISTRY.yaml
+legacy_v6_2_result_root: outputs/v6_2_20260906_222655
+data:
+  normalized_directory: data/normalized_v2
+  normalized_margin_rules: data/v6_2/margin_normalized_rules.pkl
+  v6_3_root: data/v6_3
+outputs:
+  root: outputs
+  attempt_ledger: outputs/V6_3_GLOBAL_ATTEMPT_LEDGER.csv
+execution:
+  full_history_attempt_cap: 19
+  scenario_count: 17
+  next_day_execution: true
+  vendor_open_same_day_range_filter: false
+  same_day_final_volume_or_oi_for_capacity: false
+  slippage_as_cash_once: true
+  integer_ticks_only: true
+  next_close_complete_daily_settlement: true
+  next_close_opening_segment_only: true
+  customer_fee_multiplier: 1.5
+  corrected_fee_rate_divisor: 1000
+  margin_customer_multiplier: 1.25
+  margin_minimum_lag_trading_days: 1
+  margin_max_stale_trading_days: 5
+signal:
+  annualization_days: 252
+  horizons: [20, 40, 60, 90, 120, 180, 250]
+  skip5_horizons: [20, 60]
+  reference_horizon: 252
+  ddof: 1
+  complete_window_required: true
+  forecast_scaling: false
+  forecast_cap: null
+sleeves:
+  double: [single_20_skip5, single_250]
+  triple: [single_20_skip5, single_60, single_250]
+  fixed_equal_risk: true
+  unused_budget_transfer: false
+statistics:
+  bootstrap_members: [G01, G02, S01, S02, S03, S04, S05, S06, S07, D01, D02, T01]
+  primary_block_length: 20
+  sensitivity_block_lengths: [60, 126]
+  repetitions: 5000
+  seed: 20260907
+  fwer: 0.10
+watermark: PROVISIONAL_DAILY_ONLY_CAUSAL_EXECUTION
